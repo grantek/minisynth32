@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name minisynth32)(type Legacy)(uri ${KIPRJMOD}/minisynth32_lib/minisynth32.lib)(options "")(descr ""))
+)
