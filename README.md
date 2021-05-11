@@ -5,8 +5,9 @@
 I'm currently fine-tuning things, there is no guarantee that everything will
 work when put together.
 
-A 3D-printable MIDI synthesiser inspired by the Roland MT-32 and clumsyMIDI,
-and powered by the mt32-pi MT-32 emulator.
+A 3D-printable MIDI synthesiser inspired by the Roland MT-32 and
+[clumsyMIDI](https://github.com/gmcn42/clumsyMIDI), and powered by the
+[mt32-pi](https://github.com/dwhinham/mt32-pi/wiki) MT-32 emulator.
 
 ## Features
 
@@ -67,18 +68,19 @@ The rotary encoder used is a "12mm" generic device available online.
 Specifically, this is **NOT** a preassembled board with 5-pin header, there's
 not enough room for these, so you need to wire directly to it.
 
-The pinout from the rear I/O board is labelled GND SW B A
+The pinout from the rear I/O board is labelled `GND` `SW` `B` `A`
 
-* Take a 4-wire cable with DuPont female connectors, cut the connectors off one
-  end, strip and tin the cut end of the wires.
+* Take a 4-wire jumper cable (ie. with "DuPont" 2.54mm pitch female
+  connectors), cut the connectors off one end, strip and tin the cut end of the
+  wires.
 * When soldering the cut ends to the rotary encoder, you can optionally use
   heatshrink to prevent the exposed legs from touching each other.
-* Solder the GND wire to the middle pin of the 3-pin side, and from there
+* Solder the `GND` wire to the middle pin of the 3-pin side, and from there
   (using another short piece of wire if necessary) connect it to one of the
   pins on the 2-pin side.
-* Solder the SW wire to the other pin on the 2-pin side.
-* Solder the B wire to the pin on the left of the GND pin.
-* Solder the A wire to the pin on the right of the GND pin.
+* Solder the `SW` wire to the other pin on the 2-pin side.
+* Solder the `B` wire to the pin on the left of the GND pin.
+* Solder the `A` wire to the pin on the right of the GND pin.
 
 The 3D-printed knob for the rotary encoder can be hard to to attach firmly. I
 found printing the knob in PET-G was best to get a firm fit, but PLA was
@@ -96,10 +98,10 @@ backplate.
 
 ### Assembling the MIDI port
 
-This is similar to the rotary encoder, but it just requires 2 wires (with
-female DuPont connectors) soldered onto the panel-mount DIN5 jack. Looking at
-the face of the jack with the pins facing upwards, pin 4 is immediately to the
-left of the middle pin and pin 5 is on the right.
+This is similar to the rotary encoder, but it just requires 2 jumper wires
+soldered onto the panel-mount DIN5 jack. Looking at the face of the jack with
+the pins facing upwards, pin 4 is immediately to the left of the middle pin and
+pin 5 is on the right.
 
 ### Assembling the shell
 
@@ -149,10 +151,9 @@ lengths don't matter, 15mm is good. The M3 screws are the short ones used in
   jack is traditionally mounted with the pins facing down, and the alignment
   notch facing up. DIN5 cables have an an arrow at the alignment notch for easy
   attachment.
-* Connect the DIN jack to the labelled pins on the rear PCB.
+* Connect the DIN jack to the labelled pins on the rear PCB `MIDI_IN` header.
 * Connect the wired rotary encoder to the `ROT_HDR` header.
 * Use a row of 6 female-female jumper wires to connect the front panel's
   `R_BREAKOUT` header to the rear breakout board's `F_PANEL` header.
 * Fit the top shell and fasten with an M3 screw.
 
-  
