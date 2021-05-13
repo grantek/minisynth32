@@ -6,7 +6,7 @@ encoding utf-8
 Sheet 1 1
 Title "Minisynth 32: Rear panel breakout and front panel board"
 Date ""
-Rev "1.0"
+Rev "1.1"
 Comp "https://github.com/grantek/minisynth32"
 Comment1 "ClumsyMIDI footprints (c) Andreas Zdziarstek "
 Comment2 "(c) 2021 Grant King CC-BY-SA-4.0"
@@ -647,13 +647,13 @@ Wire Wire Line
 $Comp
 L minisynth32:PB400EEQR1BLK SW2
 U 1 1 60932DE2
-P 9250 5800
-F 0 "SW2" H 9750 6087 60  0000 C CNN
-F 1 "PB400EEQR1BLK" H 9750 5981 60  0000 C CNN
-F 2 "minisynth32:PB400EEQR1BLK" H 9750 5940 60  0001 C CNN
-F 3 "" H 9250 5800 60  0000 C CNN
-	1    9250 5800
-	-1   0    0    -1  
+P 8250 5800
+F 0 "SW2" H 8750 6087 60  0000 C CNN
+F 1 "PB400EEQR1BLK" H 8750 5981 60  0000 C CNN
+F 2 "minisynth32:PB400EEQR1BLK" H 8750 5940 60  0001 C CNN
+F 3 "" H 8250 5800 60  0000 C CNN
+	1    8250 5800
+	1    0    0    -1  
 $EndComp
 $Comp
 L Connector_Generic:Conn_01x02 J5

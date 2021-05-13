@@ -7,7 +7,7 @@
       "Application": "Pcbnew",
       "Version":     "5.99.0+really5.1.9+dfsg1-1"
     },
-    "CreationDate":  "2021-05-08T23:27:45+10:00"
+    "CreationDate":  "2021-05-13T21:59:57+10:00"
   },
   "GeneralSpecs":
   {
@@ -15,7 +15,7 @@
     {
       "Name": "minisynth32",
       "GUID": "6d696e69-7379-46e7-9468-33322e6b6963",
-      "Revision": "1.0"
+      "Revision": "1.1"
     },
     "Size":
     {
