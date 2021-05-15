@@ -193,7 +193,7 @@ U 1 1 6083B180
 P 8700 2250
 F 0 "R2" V 8493 2250 50  0000 C CNN
 F 1 "220R" V 8584 2250 50  0000 C CNN
-F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 8630 2250 50  0001 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" V 8630 2250 50  0001 C CNN
 F 3 "~" H 8700 2250 50  0001 C CNN
 	1    8700 2250
 	0    1    1    0   
@@ -204,7 +204,7 @@ U 1 1 60838150
 P 6600 2700
 F 0 "R1" V 6807 2700 50  0000 C CNN
 F 1 "1k" V 6716 2700 50  0000 C CNN
-F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 6530 2700 50  0001 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" V 6530 2700 50  0001 C CNN
 F 3 "~" H 6600 2700 50  0001 C CNN
 	1    6600 2700
 	0    -1   -1   0   
@@ -528,7 +528,7 @@ U 1 1 6095DB6B
 P 7850 4600
 F 0 "C3" H 7735 4554 50  0000 R CNN
 F 1 "100u" H 7735 4645 50  0000 R CNN
-F 2 "Capacitor_THT:C_Rect_L7.0mm_W2.0mm_P5.00mm" H 7850 4600 50  0001 C CNN
+F 2 "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm" H 7850 4600 50  0001 C CNN
 F 3 "~" H 7850 4600 50  0001 C CNN
 	1    7850 4600
 	-1   0    0    1   
@@ -725,20 +725,6 @@ F 3 "" H 2050 5450 60  0000 C CNN
 	1    2050 5450
 	1    0    0    -1  
 $EndComp
-$Comp
-L minisynth32:TL3301AF160QG SW3
-U 1 1 6097E64C
-P 3350 5450
-F 0 "SW3" H 3850 5737 60  0000 C CNN
-F 1 "B2" H 3850 5631 60  0000 C CNN
-F 2 "minisynth32:TL3301AF160QG-nopaste" H 3850 5590 60  0001 C CNN
-F 3 "" H 3350 5450 60  0000 C CNN
-	1    3350 5450
-	1    0    0    -1  
-$EndComp
-NoConn ~ 4350 5450
-NoConn ~ 4350 5550
-NoConn ~ 3050 5550
 Wire Notes Line
 	750  4600 4750 4600
 Wire Notes Line
@@ -760,32 +746,13 @@ Wire Notes Line
 Wire Notes Line
 	750  7400 750  6550
 Wire Wire Line
-	1800 5800 1800 5550
-Wire Wire Line
-	1800 5550 2050 5550
-Wire Wire Line
-	1700 5800 1700 5700
-Wire Wire Line
-	1700 5700 3200 5700
-Wire Wire Line
-	3200 5700 3200 5550
-Wire Wire Line
-	3200 5550 3350 5550
-Wire Wire Line
-	1600 5800 1600 5450
-Wire Wire Line
-	1600 5450 2050 5450
-Wire Wire Line
-	1600 5450 1600 5100
-Connection ~ 1600 5450
-Wire Wire Line
 	1500 5800 1500 5100
 Wire Wire Line
 	1400 5800 1400 5100
 Wire Wire Line
 	1300 5800 1300 5100
 Wire Wire Line
-	3050 5450 3350 5450
+	3050 5450 3250 5450
 Text GLabel 5450 5150 0    50   Output ~ 0
 BTN2
 Text GLabel 5450 5250 0    50   Output ~ 0
@@ -838,4 +805,55 @@ F 3 "" H 1700 6800 50  0001 C CNN
 	1    1700 6800
 	0    1    1    0   
 $EndComp
+Wire Wire Line
+	3250 5100 3250 5450
+Connection ~ 3250 5450
+Wire Wire Line
+	3250 5450 3350 5450
+Wire Wire Line
+	3250 5100 4350 5100
+Wire Wire Line
+	4350 5100 4350 5450
+Connection ~ 3250 5100
+Wire Wire Line
+	1600 5100 2050 5100
+Connection ~ 1600 5100
+Wire Wire Line
+	1600 5100 1600 5800
+Wire Wire Line
+	2050 5450 2050 5100
+Connection ~ 2050 5100
+Wire Wire Line
+	2050 5100 3250 5100
+$Comp
+L minisynth32:TL3301AF160QG SW3
+U 1 1 6097E64C
+P 3350 5450
+F 0 "SW3" H 3850 5737 60  0000 C CNN
+F 1 "B2" H 3850 5631 60  0000 C CNN
+F 2 "minisynth32:TL3301AF160QG-nopaste" H 3850 5590 60  0001 C CNN
+F 3 "" H 3350 5450 60  0000 C CNN
+	1    3350 5450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1800 5800 3350 5800
+Wire Wire Line
+	3350 5800 3350 5550
+Wire Wire Line
+	3350 5800 4350 5800
+Wire Wire Line
+	4350 5800 4350 5550
+Connection ~ 3350 5800
+Wire Wire Line
+	1700 5800 1700 5700
+Wire Wire Line
+	1700 5700 2050 5700
+Wire Wire Line
+	3050 5700 3050 5550
+Wire Wire Line
+	2050 5700 2050 5550
+Connection ~ 2050 5700
+Wire Wire Line
+	2050 5700 3050 5700
 $EndSCHEMATC

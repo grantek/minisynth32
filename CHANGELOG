@@ -1,3 +1,16 @@
-PCB rev 1.1 - Changes to rear board only: cutaway to support Raspberry Pi 3B/3B+
+PCB rev 1.1
+Changes to rear board:
+- cutaway to support Raspberry Pi 3B/3B+
+- shorter distance to edge of PCB on DIN port side to allow more access to Pi mounting hole
+- F_PANEL header moved away from Pi camera connector
+- C3 changed to correct radial footprint, order of C3/C4 to the DAC fixed
+- Added MIDI pin diagram to bottom mask (top of minisynth), and all header names
+- Increased resistor pitch to 10.16m
 
-PCB rev 1.0 - Initial revision, rear breakout board doesn't work with Raspberry Pi 3B/3B+ (collides with USB ports)
+Changes to front board:
+- Fixed B1 and B2 order
+- Connected all SPDT switch pads for strength and redundancy
+
+PCB rev 1.0
+Initial revision, rear breakout board only works with Raspberry Pi 3A+, doesn't immediately work with 3B/3B+ (PCB collides with USB ports)
+

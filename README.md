@@ -22,10 +22,18 @@ A 3D-printable MIDI synthesiser inspired by the Roland MT-32 and
 
 ## Assembly Notes
 
+### MT32-pi configuration
+
+TODO: tl;dr enable I2S, rotary encoder control scheme, GPIO MIDI, I2C display at
+128x64 or 128x32 (even for 64-row displays), set display to "inverted".
+
 ### The PCBs
 
 There are 2 PCBs required, the Raspberry Pi hat that the rear connectors are
-mounted onto, and a mounting board for the front panel.
+mounted onto, and a mounting board for the front panel. The "front" of the rear
+board faces downwards, so the components hang upside down to fit in the tight
+clearance of the case. The MIDI port is panel-mounted to the case for the same
+reason.
 
 The KiCad project is based on a combined board with both PCBs joined by mouse-
 bites, so they can be ordered as a single panel. There are also files for the
@@ -40,6 +48,66 @@ these, the trick is to solder one leg and position the switch while the solder
 is molten. Ideally use flux paste/gel, position the switch, and hold it while
 adding a blob of solder.
 
+Apart from that, the main soldering advice is the generic "lowest-height
+components first". Make sure to trim all legs on the underside of the rear
+breakout PCB, as this faces upwards and there isn't much room to the printed
+case.
+
+### Soldering the OLED and GY-PCM5102 board
+
+**IMPORTANT:** As per the clumsyMIDI documentation, make sure that all 4 solder
+pad "jumpers" on the GY-PCM5102 board are set BEFORE soldering it to the board.
+
+**IMPORTANT:** The OLED board MUST be soldered _flat_ against the front panel
+PCB. There is no clearance for the plastic collar of a pin header.
+
+To solder the OLED board to the front panel:
+
+- Take a 4-pin header, and solder it "normally" on the rear side of the board
+(ie. plastic collar on the rear of the board, short ends of the pins in the
+OLED board's holes.
+- Trim the soldered ends of the pins off with sidecutters if they stick up far
+enough to do so. Alternatively, don't insert the pins that far in before
+soldering.
+- Slide the black plastic collar off the pin header, using pliers or by
+levering something underneath it. If necessary, you can crush the collar with
+pliers and remove the pieces.
+- Insert the long ends of the pins without the collar through the Minisynth 32
+front panel PCB, so that the OLED board is sitting on its silk-screened
+footprint. The OLED board sits partially on the front panel PCB, but is both
+longer and wider at one edge that the front panel PCB.
+- The OLED board will rock on the largest of its SMD components pressing
+against the front panel board. Take a piece of printer paper, fold it in half
+twice (so you have 4 layers), and use that as a shim between the two boards to
+stabilise the OLED board horizontal to the front panel PCB.
+- Once stabilised, solder the pins in place on the front panel PCB, and trim
+the ends.
+
+To solder the GY-PCM5102 DAC board:
+
+- Check the soldered pad headers on the rear of the GY-PCM5102 a final time.
+- Solder the board flat to the rear breakout board in the same way as the OLED
+board. Alignment is less critical here, I used a 2-layer paper shim to help.
+- Solder the 6 pins on the short edge of the board. You don't need to solder
+anything to the row of 9 pins on the long edge, there is no connection to
+anything on the rear breakout board.
+
+### Soldering the rear panel pin headers
+
+There are 3 pin headers on the rear breakout board that require a 90-degree
+angled pin header:
+
+- `F_PANEL`: connects to the front panel PCB, 6 pins.
+- `ROT_HDR`: connects to the rotary encoder, 4 pins.
+- `MIDI_IN:`: connects to the panel-mount DIN5 jack for MIDI input.
+
+Put the straight end of the pins through the holes on the PCB, but before
+soldering them, push the angled part down through the plastic collar so that
+there is just enough room to fit a jumper plug on the angled pin. If the angled
+pins extend too far off the rear breakout PCB, they can collide with the
+Raspberry Pi.
+
+
 ### 3D Printing the shell
 
 I'm using a standard hobbyist FFF printer with black PLA filament. The
@@ -48,10 +116,10 @@ different angles involved, but I was successful in printing it upright at a
 0.2mm layer height, with the visible layer lines horizontal in the finished
 part.
 
-Specifically, use "tree" support, which builds a tower of support starting on
-the build plate and reaching across to the overhanging parts. I also prefer to
-increase the vertical distance between the support and the printed part to make
-it easier to remove.
+Specifically, use "tree" support for the face, which builds a tower of support
+starting on the build plate and reaching across to the overhanging parts. I also
+prefer to increase the vertical distance between the support and the printed
+part to make it easier to remove (0.4mm gap for a 0.2mm layer height).
 
 The shell was modeled in FreeCAD using the Part workbench, which uses simple
 geometric shapes added and subtracted from each other. If you want to modify
@@ -66,7 +134,7 @@ to the final part.
 
 The rotary encoder used is a "12mm" generic device available online.
 Specifically, this is **NOT** a preassembled board with 5-pin header, there's
-not enough room for these, so you need to wire directly to it.
+not enough room for these, so you need to wire directly to the bare legs.
 
 The pinout from the rear I/O board is labelled `GND` `SW` `B` `A`
 
@@ -81,12 +149,16 @@ The pinout from the rear I/O board is labelled `GND` `SW` `B` `A`
 * Solder the `SW` wire to the other pin on the 2-pin side.
 * Solder the `B` wire to the pin on the left of the GND pin.
 * Solder the `A` wire to the pin on the right of the GND pin.
+* If you get the `B` and `A` pins wrong, you can swap the jumper wires on the
+  pin header of the rear breakout board.
 
 The 3D-printed knob for the rotary encoder can be hard to to attach firmly. I
 found printing the knob in PET-G was best to get a firm fit, but PLA was
-tougher, With PLA, I was able to use a hot soldering iron pressed against the
-rotary encoder's shaft to soften the knob in a similar way to the knurled
-screw inserts.
+less flexible, If the knob won't attach, you can carefully use a hot soldering
+iron pressed against the rotary encoder's shaft to soften the plastic in a
+similar way to the knurled screw inserts. If it's too loose, use some putty
+adhesive to hold it in place. There are a few STLs of different shaft widths,
+but the FreeCAD model is also easy to modify.
 
 Make sure you have a good fit for the knob before assembling the face plate,
 but leave it off when inserting the rotary encoder.
