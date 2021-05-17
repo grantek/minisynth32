@@ -1,10 +1,5 @@
 # Minisynth 32
 
-**THIS PROJECT IS IN ALPHA STATE** 
-
-I'm currently fine-tuning things, there is no guarantee that everything will
-work when put together.
-
 A 3D-printable MIDI synthesiser inspired by the Roland MT-32 and
 [clumsyMIDI](https://github.com/gmcn42/clumsyMIDI), and powered by the
 [mt32-pi](https://github.com/dwhinham/mt32-pi/wiki) MT-32 emulator.
@@ -16,24 +11,64 @@ A 3D-printable MIDI synthesiser inspired by the Roland MT-32 and
 * Front panel PCB with 2x tactile buttons and 0.91" OLED Display
 * Rear I/O breakout PCB with 5.5mm power jack and pushbutton power switch
 * Rotary encoder volume dial (generic 12mm shaft with no carrier board)
-* MIDI Input only (due to space requirements)
+* MIDI Input only (due to space limitations)
 * Mostly through-hole soldering, except for the two tactile buttons
 * Works with the Raspberry Pi "A" or "B" variants
+
+## Warnings
+
+**NO WARRANTY is provided, and no guarantee that all or any of the parts will
+fit together. 3D printing is time-consuming and an art at the best of times.**
+
+However, if you're stuck or have a question, feel free to open an issue on
+GitHub, and the worst you'll get is sympathy.
 
 ## Assembly Notes
 
 ### MT32-pi configuration
 
-TODO: tl;dr enable I2S, rotary encoder control scheme, GPIO MIDI, I2C display at
-128x64 or 128x32 (even for 64-row displays), set display to "inverted".
+A sample `mt32-pi.cfg` is included in this repository, the options that are
+different from the default settings are:
+
+```
+# [midi]
+# Disable USB input for faster boot time
+usb = off
+
+# [audio]
+# Output audio to the GY-PCM5102 i2s board
+output_device = i2s
+
+# Initialise the GY-PCM5102 DAC on boot
+i2c_dac_init = pcm51xx
+
+# [control]
+# Use the rotary encoder + 2 buttons control scheme
+scheme = simple_encoder
+
+# [lcd]
+# Use the ssd1306 driver for the i2c OLED display
+type = ssd1306_i2c
+
+# invert the display since it's mounted upside-down in the Minisynth 32
+rotation = inverted
+```
+
+* The generic 0.91" SSD1306 OLED also works with `height = 64`, and gives
+  a sharper but smaller text display. The default `height = 32` is stretched
+  but easier to read.
+* The generic rotary encoder I used works fine with the `encoder_type = full`
+  setting.
+* Be sure to check the mt32-pi documentation for setting up the required MT-32
+  ROMs and/or GM soundfonts, and other options you may be interested in.
 
 ### The PCBs
 
 There are 2 PCBs required, the Raspberry Pi hat that the rear connectors are
-mounted onto, and a mounting board for the front panel. The "front" of the rear
-board faces downwards, so the components hang upside down to fit in the tight
-clearance of the case. The MIDI port is panel-mounted to the case for the same
-reason.
+mounted onto (the "rear I/O breakout board"), and a mounting board for the
+front panel. The "front" of the rear board faces downwards, so the components
+hang upside down to fit in the tight clearance of the case. The MIDI port is
+panel-mounted to the case for the same reason.
 
 The KiCad project is based on a combined board with both PCBs joined by mouse-
 bites, so they can be ordered as a single panel. There are also files for the
@@ -41,6 +76,16 @@ individual front and rear boards, because it was cheaper for me to order them
 this way from the PCB manufacturer I used (there was an extra fee for
 "panelised" boards that was more than double the base cost of a single small
 board).
+
+PCB notes for manufacturers:
+
+* Rear PCB only: 31.7mm * 96mm
+* Front PCB only: 15.2mm * 89.9mm
+* Panelised front+rear PCB: 49.5mm * 96mm
+* Minimum hole size: 0.5mm (the standard "0.3mm" is fine to select)
+* Minimum track spacing: 0.2mm (the standard "6 mils" is fine to select)
+* Layers: 2
+* Thickness: must be 1.6mm
 
 Don't be scared of the SMD switches, they're huge compared to most surface
 mount devices. If you're coming from clumsyMIDI and have never hand-soldered
@@ -101,12 +146,9 @@ angled pin header:
 - `ROT_HDR`: connects to the rotary encoder, 4 pins.
 - `MIDI_IN:`: connects to the panel-mount DIN5 jack for MIDI input.
 
-Put the straight end of the pins through the holes on the PCB, but before
-soldering them, push the angled part down through the plastic collar so that
-there is just enough room to fit a jumper plug on the angled pin. If the angled
-pins extend too far off the rear breakout PCB, they can collide with the
-Raspberry Pi.
-
+Check the clearance of your pin headers against the Raspberry Pi - if you have
+tall pin headers, push them down through the plastic collar so that they just
+have room for the jumper wires to connect.
 
 ### 3D Printing the shell
 
@@ -154,11 +196,11 @@ The pinout from the rear I/O board is labelled `GND` `SW` `B` `A`
 
 The 3D-printed knob for the rotary encoder can be hard to to attach firmly. I
 found printing the knob in PET-G was best to get a firm fit, but PLA was
-less flexible, If the knob won't attach, you can carefully use a hot soldering
-iron pressed against the rotary encoder's shaft to soften the plastic in a
-similar way to the knurled screw inserts. If it's too loose, use some putty
-adhesive to hold it in place. There are a few STLs of different shaft widths,
-but the FreeCAD model is also easy to modify.
+less flexible, If the knob won't attach, you can carefully use a clean hot
+soldering iron pressed against the rotary encoder's shaft to soften the plastic
+in a similar way to the knurled screw inserts. If it's too loose, use some putty
+adhesive to hold it in place (this is much easier). There are a few STLs of
+different shaft widths, but the FreeCAD model is also easy to modify.
 
 Make sure you have a good fit for the knob before assembling the face plate,
 but leave it off when inserting the rotary encoder.
@@ -180,7 +222,7 @@ pin 5 is on the right.
 The 3D-printed shell is assembled using M3 screws, bolts, and nuts. The bolt
 lengths don't matter, 15mm is good. The M3 screws are the short ones used in
 [PC cases](https://en.wikipedia.org/wiki/Computer_case_screws#M3_screw), about
-3mm in length.
+3-4mm in length.
 
 * The mounting holes for the Pi, the rotary encoder, the front panel PCB, and
   the top shell use 3mm M3 knurled threaded inserts. These are pushed into the
@@ -197,6 +239,7 @@ lengths don't matter, 15mm is good. The M3 screws are the short ones used in
 
 ### Assembling the face
 
+* Melt the 3 threaded inserts into the faceplate as described above.
 * The printed face plate is assembled with the assembled front panel PCB, two
   printed buttons, the assembled rotary encoder (with printed backplate), and
   a printed knob.
@@ -206,19 +249,19 @@ lengths don't matter, 15mm is good. The M3 screws are the short ones used in
 * Insert the rotary encoder assembly with the longer side of the backplate to
   the right (covering the front panel PCB). Attach the backplate with M3
   screws, and fit the knob.
-* Insert the face plate's tabs into the base, insert a bolt from the bottom of
-  the base through each tab in the face plate and fasten with an M3 nut.
 
-### Assembling the base
+### Assembling the base and top
 
+* Melt the 4 threaded inserts into the base, and 1 into the top shell, as
+  described above.
 * Format and prepare your Micro SD card for mt32-pi, and insert it into the
   Raspberry Pi.
 * Attach the assembled Rear I/O PCB onto the Pi's 40-pin GPIO port, facing
   outwards.
 * Line up the Pi on the base with the rear panel, and screw the Pi down with M3
   "PC" screws. You can still access the SD card when the Pi is installed, but
-   it's easier to do it beforehand.
-* Place the wired MIDI DIN jack on the inside of the base's rear plate, and
+  it's easier to do it beforehand.
+* Place the wired MIDI DIN jack on the **inside** of the base's rear plate, and
   attach with 2 M3 bolts from the outside (M3 nuts on the inside). The DIN5
   jack is traditionally mounted with the pins facing down, and the alignment
   notch facing up. DIN5 cables have an an arrow at the alignment notch for easy
@@ -227,5 +270,9 @@ lengths don't matter, 15mm is good. The M3 screws are the short ones used in
 * Connect the wired rotary encoder to the `ROT_HDR` header.
 * Use a row of 6 female-female jumper wires to connect the front panel's
   `R_BREAKOUT` header to the rear breakout board's `F_PANEL` header.
+* Insert the face plate's tabs into the base, insert a bolt from the bottom of
+  the base through each tab in the face plate and fasten with an M3 nut.
 * Fit the top shell and fasten with an M3 screw.
+* Stick 4 rubber feet to the base to give clearance for the bolt heads
+
 

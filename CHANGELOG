@@ -9,7 +9,7 @@ Changes to rear board:
 
 Changes to front board:
 - Fixed B1 and B2 order
-- Connected all SPDT switch pads for strength and redundancy
+- Connected all SMD switch pads for strength and redundancy
 
 PCB rev 1.0
 Initial revision, rear breakout board only works with Raspberry Pi 3A+, doesn't immediately work with 3B/3B+ (PCB collides with USB ports)
