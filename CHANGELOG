@@ -1,3 +1,16 @@
+20210531 Change to base STL and BOM: Pi mounts use M2.5 bolts
+
+Previously the Pi was mounted to the base using 2 or 4 M3 screws into brass
+knurled threaded inserts. The mounting holes in the Pi are actually 2.9mm,
+and designed for M2.5 bolts. M3 screws _may_ work (they did for me) by slightly
+widening the hole, but this carries a risk of damaging your Pi.
+
+The Pi is now mounted to the base in the same way as the faceplate is, using
+bolts through the base with nuts to hold the board down. The BOM still
+specifies M3 bolts and nuts for the faceplate and MIDI port, but M2.5 bolts may
+work as well.
+
+---
 PCB rev 1.1
 Changes to rear board:
 - cutaway to support Raspberry Pi 3B/3B+
@@ -11,6 +24,7 @@ Changes to front board:
 - Fixed B1 and B2 order
 - Connected all SMD switch pads for strength and redundancy
 
+---
 PCB rev 1.0
 Initial revision, rear breakout board only works with Raspberry Pi 3A+, doesn't immediately work with 3B/3B+ (PCB collides with USB ports)
 

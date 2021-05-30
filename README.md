@@ -95,10 +95,10 @@ these, the trick is to solder one leg and position the switch while the solder
 is molten. Ideally use flux paste/gel, position the switch, and hold it while
 adding a blob of solder.
 
-Apart from that, the main soldering advice is the generic "lowest-height
-components first". Make sure to trim all legs on the underside of the rear
-breakout PCB, as this faces upwards and there isn't much room to the printed
-case.
+Apart from that, the main soldering advice is to solder the DAC and OLED boards
+first (see below), then the generic "lowest-height components first". Make sure
+to trim all legs on the underside of the rear breakout PCB, as this faces
+upwards and there isn't much room to the printed case.
 
 ### Soldering the OLED and GY-PCM5102 board
 
@@ -163,22 +163,26 @@ part.
 Specifically, use "tree" support for the face, which builds a tower of support
 starting on the build plate and reaching across to the overhanging parts. I also
 prefer to increase the vertical distance between the support and the printed
-part to make it easier to remove (0.4mm gap for a 0.2mm layer height).
+part to make it easier to remove (0.4mm gap for a 0.2mm layer height). The
+supported parts of the model may end up messy on their bottom layer, but this
+is okay for the inside of the faceplate.
 
 The shell was modeled in FreeCAD using the Part workbench, which uses simple
 geometric shapes added and subtracted from each other. If you want to modify
 the "MS-32" text on the face plate to something more authentic, select the
 Model window, press Ctrl-F to search the tree of objects, and search for
 ShapeString (the default name for a text object). In the Data window for the
-selected object you should be able to change the "MS-32" to something else. The
-object remains greyed-out and hidden, but the change should propagate through
-to the final part.
+selected object you should be able to change the "MS-32" to something else, and
+press Enter. The object remains greyed-out and hidden, but the change should
+propagate through to the final part.
 
 ### Assembling the rotary encoder
 
 The rotary encoder used is a "12mm" generic device available online.
 Specifically, this is **NOT** a preassembled board with 5-pin header, there's
 not enough room for these, so you need to wire directly to the bare legs.
+
+First, bend the mounting tabs on the encoder in against its base.
 
 The pinout from the rear I/O board is labelled `GND` `SW` `B` `A`
 
@@ -188,7 +192,7 @@ The pinout from the rear I/O board is labelled `GND` `SW` `B` `A`
 * When soldering the cut ends to the rotary encoder, you can optionally use
   heatshrink to prevent the exposed legs from touching each other.
 * Solder the `GND` wire to the middle pin of the 3-pin side, and from there
-  (using another short piece of wire if necessary) connect it to one of the
+  (using another short piece of wire) connect it to one of the
   pins on the 2-pin side.
 * Solder the `SW` wire to the other pin on the 2-pin side.
 * Solder the `B` wire to the pin on the left of the GND pin.
@@ -210,27 +214,39 @@ but leave it off when inserting the rotary encoder.
 Insert the rotary encoder into the printed backplate (direction doesn't
 matter), and fasten the nut that comes with the encoder onto the front of the
 backplate. This is optional if the rotary encoder screws tightly into the
-backplate.
+backplate. 
+
+Align the encoder in the backplate so that one of the tucked tabs is on the
+bottom (horizontal) edge, and the pins are on the side (vertical) edges.
 
 ### Assembling the MIDI port
 
 This is similar to the rotary encoder, but it just requires 2 jumper wires
 soldered onto the panel-mount DIN5 jack. Looking at the face of the jack with
 the pins facing upwards, pin 4 is immediately to the left of the middle pin and
-pin 5 is on the right.
+pin 5 is on the right. Heatshrink isn't needed for insulation because the pins
+are so far apart, but I used heatshrink to add some mechanical stability to the
+connection.
 
 ### Assembling the shell
 
-The 3D-printed shell is assembled using M3 screws, bolts, and nuts. The bolt
-lengths don't matter, 15mm is good. The M3 screws are the short ones used in
-[PC cases](https://en.wikipedia.org/wiki/Computer_case_screws#M3_screw), about
-3-4mm in length.
+The faceplate and MIDI port are attached using M3 bolts and nuts. The bolt
+lengths don't matter too much, 15mm is good.
 
-* The mounting holes for the Pi, the rotary encoder, the front panel PCB, and
-  the top shell use 3mm M3 knurled threaded inserts. These are pushed into the
-  (slightly narrower) mounting holes of the plastic case with a hot soldering
-  iron to melt them into the hole (use a similar temperature as your 3D printer
-  extruder, eg. 220-250 Celsius for PLA)
+The front PCB, rotary encoder, and top shell are attached using M3\*4mm screws,
+eg.  the short ones used in
+[PC cases](https://en.wikipedia.org/wiki/Computer_case_screws#M3_screw).
+
+The Raspberry Pi is mounted using M2.5 bolts and nuts. M3 bolts _may_ work
+(older versions of the base used M3 screws into threaded inserts), but require
+widening the hole slightly, which carries some risk of damaging the Pi.
+
+The mounting holes for the rotary encoder, the front panel PCB, and the top
+shell use 3mm M3 knurled threaded inserts. These are pushed into the (slightly
+narrower) mounting holes of the plastic case with a hot soldering iron to melt
+them into the hole (use a similar temperature as your 3D printer extruder, eg.
+220-250 Celsius for PLA).
+
   *  Be careful you don't let the soldering iron touch the other 3D-printed
      parts!
   *  It's easy with a wide conical soldering tip to push the tip of the iron
@@ -242,6 +258,7 @@ lengths don't matter, 15mm is good. The M3 screws are the short ones used in
 ### Assembling the face
 
 * Melt the 3 threaded inserts into the faceplate as described above.
+* Melt the last threaded insert into the mounting hole on the top shell.
 * The printed face plate is assembled with the assembled front panel PCB, two
   printed buttons, the assembled rotary encoder (with printed backplate), and
   a printed knob.
@@ -249,32 +266,35 @@ lengths don't matter, 15mm is good. The M3 screws are the short ones used in
   so that the tactile switches fit against the buttons, and the OLED display
   is aligned with the window. Attach the PCB with an M3 screw.
 * Insert the rotary encoder assembly with the longer side of the backplate to
-  the right (covering the front panel PCB). Attach the backplate with M3
-  screws, and fit the knob.
+  the right (covering the front panel PCB). You may need to bend the pins on the
+  left side upwards to clear the face's mounting tab. Attach the backplate with
+  M3 screws, and fit the knob.
 
 ### Assembling the base and top
 
-* Melt the 4 threaded inserts into the base, and 1 into the top shell, as
-  described above.
 * Format and prepare your Micro SD card for mt32-pi, and insert it into the
-  Raspberry Pi.
+  Raspberry Pi. You can still access the SD card when the Pi is installed, but
+  it's easier to do it beforehand.
 * Attach the assembled Rear I/O PCB onto the Pi's 40-pin GPIO port, facing
   outwards.
-* Line up the Pi on the base with the rear panel, and screw the Pi down with M3
-  "PC" screws. You can still access the SD card when the Pi is installed, but
-  it's easier to do it beforehand.
+* Line up the Pi on the base with the rear panel, and insert 4 M2.5 bolts
+  through the base and mounting holes on the Pi. Secure with 4 M2.5 nuts, but
+  do not over-tighten these as excess pressure can damage the Pi.
 * Place the wired MIDI DIN jack on the **inside** of the base's rear plate, and
   attach with 2 M3 bolts from the outside (M3 nuts on the inside). The DIN5
   jack is traditionally mounted with the pins facing down, and the alignment
   notch facing up. DIN5 cables have an an arrow at the alignment notch for easy
   attachment.
 * Connect the DIN jack to the labelled pins on the rear PCB `MIDI_IN` header.
+  With the half-circle of DIN pins facing downwards, Pin 4 is left of the
+  centre solder tab, and when connected to the rear PCB, the jumper wires
+  won't cross.
 * Connect the wired rotary encoder to the `ROT_HDR` header.
 * Use a row of 6 female-female jumper wires to connect the front panel's
   `R_BREAKOUT` header to the rear breakout board's `F_PANEL` header.
 * Insert the face plate's tabs into the base, insert a bolt from the bottom of
   the base through each tab in the face plate and fasten with an M3 nut.
 * Fit the top shell and fasten with an M3 screw.
-* Stick 4 rubber feet to the base to give clearance for the bolt heads
-
+* Stick 4 rubber feet (or felt pads, etc.) to the base to give clearance for the
+  bolt heads.
 
