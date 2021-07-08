@@ -27,6 +27,9 @@ GitHub, and the worst you'll get is sympathy.
 
 ## Assembly Notes
 
+Check the [project wiki](https://github.com/grantek/minisynth32/wiki) for the build guide with pictures, a text-only copy is
+included below:
+
 ### MT32-pi configuration
 
 A sample `mt32-pi.cfg` is included in this repository, the options that are
@@ -230,16 +233,17 @@ connection.
 
 ### Assembling the shell
 
-The faceplate and MIDI port are attached using M3 bolts and nuts. The bolt
-lengths don't matter too much, 15mm is good.
-
-The front PCB, rotary encoder, and top shell are attached using M3\*4mm screws,
-eg.  the short ones used in
-[PC cases](https://en.wikipedia.org/wiki/Computer_case_screws#M3_screw).
-
 The Raspberry Pi is mounted using M2.5 bolts and nuts. M3 bolts _may_ work
 (older versions of the base used M3 screws into threaded inserts), but require
 widening the hole slightly, which carries some risk of damaging the Pi.
+
+The faceplate and MIDI port are attached using M3 bolts and nuts. The bolt
+lengths don't matter too much, 8-15mm is good. 8mm M2.5 bolts and nuts will also
+work here if you're purchasing one type of bolt.
+
+The front PCB, rotary encoder, and top shell are attached using M3\*4mm screws.
+M3 PC Case Screws may work here, but if they're any longer than 4mm, it's
+possible to push into the plastic resulting in a bulge on the front.
 
 The mounting holes for the rotary encoder, the front panel PCB, and the top
 shell use 3mm M3 knurled threaded inserts. These are pushed into the (slightly
