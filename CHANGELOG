@@ -1,3 +1,24 @@
+Front PCB rev 2.0
+
+10-button interface for more authentic front face. Only the 2 working switches
+for mt32-pi need to be installed, but there are positions for 10 tactile
+switches. With a slightly modified front face model and more printed buttons,
+these switches can be installed without being connected (purely for novelty)
+or used for future expansion/experimentation.
+
+Switches used are now through-hole TL59N switches, so that I don't have to
+say the project is only "mostly" through-hole.
+
+Rear PCB rev 1.2
+No real difference to v1.1, the version bump is mainly pedantic. The outer
+board dimensions (short edges only) were snapped to a metric grid to match the
+new front PCB.
+
+At time of writing this version only appears in the panelised "front plus rear"
+pcbnew file, the standalone board is still left at v1.1 with unchanged
+dimensions.
+
+---
 20210531 Change to base STL and BOM: Pi mounts use M2.5 bolts
 
 Previously the Pi was mounted to the base using 2 or 4 M3 screws into brass

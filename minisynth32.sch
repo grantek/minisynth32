@@ -464,7 +464,7 @@ Wire Wire Line
 	7850 6000 8100 6000
 Wire Wire Line
 	8100 6000 8100 6150
-Text GLabel 5450 5650 0    50   Input ~ 0
+Text GLabel 5700 5000 0    50   Input ~ 0
 I2C_SDA
 $Comp
 L minisynth32:GY-PCM5102 A1
@@ -645,10 +645,10 @@ $EndComp
 Wire Wire Line
 	7850 5800 8250 5800
 $Comp
-L minisynth32:PB400EEQR1BLK SW2
+L minisynth32:PB400EEQR1BLK SW11
 U 1 1 60932DE2
 P 8250 5800
-F 0 "SW2" H 8750 6087 60  0000 C CNN
+F 0 "SW11" H 8750 6087 60  0000 C CNN
 F 1 "PB400EEQR1BLK" H 8750 5981 60  0000 C CNN
 F 2 "minisynth32:PB400EEQR1BLK" H 8750 5940 60  0001 C CNN
 F 3 "" H 8250 5800 60  0000 C CNN
@@ -714,27 +714,6 @@ F 3 "~" H 1500 4900 50  0001 C CNN
 	1    1500 4900
 	0    1    -1   0   
 $EndComp
-$Comp
-L minisynth32:TL3301AF160QG SW1
-U 1 1 60970FFF
-P 2050 5450
-F 0 "SW1" H 2550 5737 60  0000 C CNN
-F 1 "B1" H 2550 5631 60  0000 C CNN
-F 2 "minisynth32:TL3301AF160QG-nopaste" H 2550 5590 60  0001 C CNN
-F 3 "" H 2050 5450 60  0000 C CNN
-	1    2050 5450
-	1    0    0    -1  
-$EndComp
-Wire Notes Line
-	750  4600 4750 4600
-Wire Notes Line
-	4750 4600 4750 6300
-Wire Notes Line
-	4750 6300 750  6300
-Wire Notes Line
-	750  6300 750  4600
-Text Notes 3950 6250 0    50   ~ 0
-Front Panel PCB
 Text Notes 2750 7050 0    50   ~ 0
 Rotary encoder (12mm shaft) is\nwired directly to ROT_HDR
 Wire Notes Line
@@ -751,47 +730,45 @@ Wire Wire Line
 	1400 5800 1400 5100
 Wire Wire Line
 	1300 5800 1300 5100
-Wire Wire Line
-	3050 5450 3250 5450
-Text GLabel 5450 5150 0    50   Output ~ 0
+Text GLabel 5700 4500 0    50   Output ~ 0
 BTN2
-Text GLabel 5450 5250 0    50   Output ~ 0
+Text GLabel 5700 4600 0    50   Output ~ 0
 BTN1
 $Comp
 L power:GND #PWR02
 U 1 1 608FAEDB
-P 5150 5350
-F 0 "#PWR02" H 5150 5100 50  0001 C CNN
-F 1 "GND" V 5155 5222 50  0000 R CNN
-F 2 "" H 5150 5350 50  0001 C CNN
-F 3 "" H 5150 5350 50  0001 C CNN
-	1    5150 5350
+P 5400 4700
+F 0 "#PWR02" H 5400 4450 50  0001 C CNN
+F 1 "GND" V 5405 4572 50  0000 R CNN
+F 2 "" H 5400 4700 50  0001 C CNN
+F 3 "" H 5400 4700 50  0001 C CNN
+	1    5400 4700
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	5450 5350 5150 5350
+	5700 4700 5400 4700
 $Comp
 L power:+5V #PWR03
 U 1 1 608FF28F
-P 5450 5450
-F 0 "#PWR03" H 5450 5300 50  0001 C CNN
-F 1 "+5V" V 5465 5578 50  0000 L CNN
-F 2 "" H 5450 5450 50  0001 C CNN
-F 3 "" H 5450 5450 50  0001 C CNN
-	1    5450 5450
+P 5700 4800
+F 0 "#PWR03" H 5700 4650 50  0001 C CNN
+F 1 "+5V" V 5715 4928 50  0000 L CNN
+F 2 "" H 5700 4800 50  0001 C CNN
+F 3 "" H 5700 4800 50  0001 C CNN
+	1    5700 4800
 	0    -1   -1   0   
 $EndComp
-Text GLabel 5450 5550 0    50   Input ~ 0
+Text GLabel 5700 4900 0    50   Input ~ 0
 I2C_SCL
 $Comp
 L Connector_Generic:Conn_01x06 J1
 U 1 1 608E8C61
-P 5650 5350
-F 0 "J1" H 5730 5342 50  0000 L CNN
-F 1 "F_PANEL" H 5730 5251 50  0000 L CNN
-F 2 "minisynth32:PinHeader_1x06_P2.54mm_Vertical" H 5650 5350 50  0001 C CNN
-F 3 "~" H 5650 5350 50  0001 C CNN
-	1    5650 5350
+P 5900 4700
+F 0 "J1" H 5980 4692 50  0000 L CNN
+F 1 "F_PANEL" H 5980 4601 50  0000 L CNN
+F 2 "minisynth32:PinHeader_1x06_P2.54mm_Vertical" H 5900 4700 50  0001 C CNN
+F 3 "~" H 5900 4700 50  0001 C CNN
+	1    5900 4700
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -805,55 +782,280 @@ F 3 "" H 1700 6800 50  0001 C CNN
 	1    1700 6800
 	0    1    1    0   
 $EndComp
-Wire Wire Line
-	3250 5100 3250 5450
-Connection ~ 3250 5450
-Wire Wire Line
-	3250 5450 3350 5450
-Wire Wire Line
-	3250 5100 4350 5100
-Wire Wire Line
-	4350 5100 4350 5450
-Connection ~ 3250 5100
-Wire Wire Line
-	1600 5100 2050 5100
 Connection ~ 1600 5100
 Wire Wire Line
-	1600 5100 1600 5800
-Wire Wire Line
-	2050 5450 2050 5100
-Connection ~ 2050 5100
-Wire Wire Line
-	2050 5100 3250 5100
-$Comp
-L minisynth32:TL3301AF160QG SW3
-U 1 1 6097E64C
-P 3350 5450
-F 0 "SW3" H 3850 5737 60  0000 C CNN
-F 1 "B2" H 3850 5631 60  0000 C CNN
-F 2 "minisynth32:TL3301AF160QG-nopaste" H 3850 5590 60  0001 C CNN
-F 3 "" H 3350 5450 60  0000 C CNN
-	1    3350 5450
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	1800 5800 3350 5800
-Wire Wire Line
-	3350 5800 3350 5550
-Wire Wire Line
-	3350 5800 4350 5800
-Wire Wire Line
-	4350 5800 4350 5550
-Connection ~ 3350 5800
+	1600 5100 1600 5350
 Wire Wire Line
 	1700 5800 1700 5700
 Wire Wire Line
-	1700 5700 2050 5700
+	1600 5100 2850 5100
+$Comp
+L Switch:SW_Push SW1
+U 1 1 61215D41
+P 3400 5350
+F 0 "SW1" H 3400 5165 50  0000 C CNN
+F 1 "B1" H 3400 5256 50  0000 C CNN
+F 2 "minisynth32:TL59N" H 3400 5550 50  0001 C CNN
+F 3 "~" H 3400 5550 50  0001 C CNN
+	1    3400 5350
+	1    0    0    -1  
+$EndComp
 Wire Wire Line
-	3050 5700 3050 5550
+	1800 5800 3200 5800
 Wire Wire Line
-	2050 5700 2050 5550
-Connection ~ 2050 5700
+	2850 5100 2850 5350
+Connection ~ 2850 5100
 Wire Wire Line
-	2050 5700 3050 5700
+	2850 5100 3600 5100
+Wire Wire Line
+	3600 5100 3600 5350
+Wire Wire Line
+	2450 5350 2450 5700
+Wire Wire Line
+	1700 5700 2450 5700
+Wire Wire Line
+	3200 5350 3200 5800
+Text Notes 3050 6200 0    50   ~ 0
+Front Panel PCB
+Wire Notes Line
+	4250 6350 750  6350
+Wire Notes Line
+	750  6350 750  4650
+Wire Notes Line
+	750  4650 4250 4650
+Wire Notes Line
+	4250 4650 4250 6350
+$Comp
+L Switch:SW_Push SW2
+U 1 1 61226CBB
+P 2650 5350
+F 0 "SW2" H 2650 5150 50  0000 C CNN
+F 1 "B2" H 2650 5250 50  0000 C CNN
+F 2 "minisynth32:TL59N" H 2650 5550 50  0001 C CNN
+F 3 "~" H 2650 5550 50  0001 C CNN
+	1    2650 5350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW3
+U 1 1 612C1A6B
+P 5750 6500
+F 0 "SW3" H 6150 6500 50  0000 C CNN
+F 1 "SW_Push" H 6450 6500 50  0000 C CNN
+F 2 "minisynth32:TL59N" H 5750 6700 50  0001 C CNN
+F 3 "~" H 5750 6700 50  0001 C CNN
+	1    5750 6500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW4
+U 1 1 613056E9
+P 5750 5900
+F 0 "SW4" H 6150 5900 50  0000 C CNN
+F 1 "SW_Push" H 6450 5900 50  0000 C CNN
+F 2 "minisynth32:TL59N" H 5750 6100 50  0001 C CNN
+F 3 "~" H 5750 6100 50  0001 C CNN
+	1    5750 5900
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW5
+U 1 1 613097B7
+P 5750 6950
+F 0 "SW5" H 6150 6950 50  0000 C CNN
+F 1 "SW_Push" H 6450 6950 50  0000 C CNN
+F 2 "minisynth32:TL59N" H 5750 7150 50  0001 C CNN
+F 3 "~" H 5750 7150 50  0001 C CNN
+	1    5750 6950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW6
+U 1 1 6130D71F
+P 5750 6800
+F 0 "SW6" H 6150 6800 50  0000 C CNN
+F 1 "SW_Push" H 6450 6800 50  0000 C CNN
+F 2 "minisynth32:TL59N" H 5750 7000 50  0001 C CNN
+F 3 "~" H 5750 7000 50  0001 C CNN
+	1    5750 6800
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW7
+U 1 1 61311A48
+P 5750 6650
+F 0 "SW7" H 6150 6650 50  0000 C CNN
+F 1 "SW_Push" H 6450 6650 50  0000 C CNN
+F 2 "minisynth32:TL59N" H 5750 6850 50  0001 C CNN
+F 3 "~" H 5750 6850 50  0001 C CNN
+	1    5750 6650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW8
+U 1 1 61315B9B
+P 5750 6350
+F 0 "SW8" H 6150 6350 50  0000 C CNN
+F 1 "SW_Push" H 6450 6350 50  0000 C CNN
+F 2 "minisynth32:TL59N" H 5750 6550 50  0001 C CNN
+F 3 "~" H 5750 6550 50  0001 C CNN
+	1    5750 6350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW9
+U 1 1 61319D0A
+P 5750 6200
+F 0 "SW9" H 6150 6200 50  0000 C CNN
+F 1 "SW_Push" H 6450 6200 50  0000 C CNN
+F 2 "minisynth32:TL59N" H 5750 6400 50  0001 C CNN
+F 3 "~" H 5750 6400 50  0001 C CNN
+	1    5750 6200
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW10
+U 1 1 6131DEF3
+P 5750 6050
+F 0 "SW10" H 6150 6050 50  0000 C CNN
+F 1 "SW_Push" H 6450 6050 50  0000 C CNN
+F 2 "minisynth32:TL59N" H 5750 6250 50  0001 C CNN
+F 3 "~" H 5750 6250 50  0001 C CNN
+	1    5750 6050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1600 5350 1700 5350
+Connection ~ 1600 5350
+Wire Wire Line
+	1600 5350 1600 5800
+$Comp
+L power:GND2 #PWR0101
+U 1 1 61347CCE
+P 1800 5350
+F 0 "#PWR0101" H 1800 5100 50  0001 C CNN
+F 1 "GND2" V 1805 5222 50  0000 R CNN
+F 2 "" H 1800 5350 50  0001 C CNN
+F 3 "" H 1800 5350 50  0001 C CNN
+	1    1800 5350
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	5550 7050 5550 6950
+Wire Wire Line
+	5450 7050 5450 6800
+Wire Wire Line
+	5450 6800 5550 6800
+Wire Wire Line
+	5350 7050 5350 6650
+Wire Wire Line
+	5350 6650 5550 6650
+Wire Wire Line
+	5250 7050 5250 6500
+Wire Wire Line
+	5250 6500 5550 6500
+Wire Wire Line
+	5150 6350 5550 6350
+Wire Wire Line
+	5050 6200 5550 6200
+Wire Wire Line
+	4850 7050 4850 5900
+Wire Wire Line
+	4850 5900 5550 5900
+Wire Wire Line
+	5950 6950 5950 6800
+Wire Wire Line
+	5950 6650 5950 6500
+Wire Wire Line
+	5950 6350 5950 6200
+Wire Wire Line
+	5950 6050 5950 5900
+Wire Wire Line
+	5950 6050 5950 6200
+Connection ~ 5950 6050
+Connection ~ 5950 6200
+Wire Wire Line
+	5950 6350 5950 6500
+Connection ~ 5950 6350
+Connection ~ 5950 6500
+Wire Wire Line
+	5950 6650 5950 6800
+Connection ~ 5950 6650
+Connection ~ 5950 6800
+Wire Wire Line
+	5950 5900 5950 5650
+Connection ~ 5950 5900
+$Comp
+L power:GND2 #PWR0102
+U 1 1 6139B4DA
+P 5950 5650
+F 0 "#PWR0102" H 5950 5400 50  0001 C CNN
+F 1 "GND2" H 5955 5477 50  0000 C CNN
+F 2 "" H 5950 5650 50  0001 C CNN
+F 3 "" H 5950 5650 50  0001 C CNN
+	1    5950 5650
+	-1   0    0    1   
+$EndComp
+Wire Notes Line
+	4450 7400 4450 5200
+Wire Notes Line
+	4450 5200 6800 5200
+Wire Notes Line
+	6800 5200 6800 7400
+Wire Notes Line
+	6800 7400 4450 7400
+Wire Notes Line
+	4450 5200 6800 7400
+Wire Notes Line
+	6800 5200 4450 7400
+Text Notes 4550 5750 0    50   ~ 0
+UNUSED Front Panel buttons\n\nThese may connect to a future\nversion of mt32-pi, or tactile\nswitches may be placed that\nhave no connection
+Wire Wire Line
+	4950 6050 5550 6050
+Wire Wire Line
+	5050 7050 5050 6200
+Wire Wire Line
+	5150 7050 5150 6350
+Wire Wire Line
+	4950 6050 4950 7050
+$Comp
+L minisynth32:Connector_Generic_Conn_01x04 J8
+U 1 1 614569E4
+P 5050 7250
+F 0 "J8" V 5150 7150 50  0000 L CNN
+F 1 "UNUSED_2" V 5150 6700 50  0000 L CNN
+F 2 "minisynth32:PinHeader_1x04_P2.54mm_Vertical" H 5050 7250 50  0001 C CNN
+F 3 "" H 5050 7250 50  0001 C CNN
+	1    5050 7250
+	0    1    1    0   
+$EndComp
+$Comp
+L minisynth32:Connector_Generic_Conn_01x04 J9
+U 1 1 61487EF7
+P 5450 7250
+F 0 "J9" V 5550 7150 50  0000 L CNN
+F 1 "UNUSED_1" V 5550 7300 50  0000 L CNN
+F 2 "minisynth32:PinHeader_1x04_P2.54mm_Vertical" H 5450 7250 50  0001 C CNN
+F 3 "" H 5450 7250 50  0001 C CNN
+	1    5450 7250
+	0    1    1    0   
+$EndComp
+$Comp
+L minisynth32:power_PWR_FLAG #FLG0101
+U 1 1 614A87B5
+P 1800 5500
+F 0 "#FLG0101" H 1800 5575 50  0001 C CNN
+F 1 "power_PWR_FLAG" V 1900 5400 50  0000 L CNN
+F 2 "" H 1800 5500 50  0001 C CNN
+F 3 "" H 1800 5500 50  0001 C CNN
+	1    1800 5500
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1700 5350 1700 5500
+Wire Wire Line
+	1700 5500 1800 5500
+Connection ~ 1700 5350
+Wire Wire Line
+	1700 5350 1800 5350
 $EndSCHEMATC

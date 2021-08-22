@@ -1,4 +1,4 @@
-19014260224633090
+19033705197003973
 Battery
 BatteryHolder_Bulgin_BX0036_1xC
 Bulgin Battery Holder, BX0036, Battery Type C (https://www.bulgin.com/products/pub/media/bulgin/data/Battery_holders.pdf)
@@ -72568,6 +72568,27 @@ TO-264-5 Vertical RM 3.81mm
 0
 5
 5
+Panelization
+mouse-bite-1mm-slot
+
+
+0
+0
+0
+Panelization
+mouse-bite-2.54mm-slot
+
+
+0
+0
+0
+Panelization
+mouse-bite-2mm-slot
+
+
+0
+0
+0
 Potentiometer_SMD
 Potentiometer_ACP_CA6-VSMD_Vertical
 Potentiometer, vertical, ACP CA6-VSMD, http://www.acptechnologies.com/wp-content/uploads/2017/06/01-ACP-CA6.pdf
@@ -77720,6 +77741,20 @@ Logo WEEE
 0
 0
 0
+TL3301AF160QG
+TL3301AF160QG
+
+
+0
+4
+4
+TL3301AF160QG
+TL3301AF160QG-nopaste
+
+
+0
+4
+4
 TerminalBlock
 TerminalBlock_Altech_AK300-2_P5.00mm
 Altech AK300 terminal block, pitch 5.0mm, 45 degree angled, see http://www.mouser.com/ds/2/16/PCBMETRC-24178.pdf
@@ -83026,6 +83061,41 @@ varistor SIOV
 0
 2
 2
+clumsyMIDI
+GY-PCM5102
+
+
+0
+15
+15
+clumsyMIDI
+MultiDIN5
+standard DIN connector, 5 pins, midi
+Universal DIN 5-pins connector midi
+0
+9
+5
+clumsyMIDI
+SDS-50J
+SDS-50J, standard DIN connector, 5 pins, midi
+SDS-50J DIN 5-pins connector midi
+0
+7
+5
+clumsyMIDI
+SSD1306_128_32
+Through hole straight pin header, 1x04, 2.54mm pitch, single row
+Through hole pin header THT 1x04 2.54mm single row
+0
+4
+4
+clumsyMIDI
+ZDZsmall
+
+
+0
+0
+0
 minisynth32
 CP_Radial_D8.0mm_P3.50mm
 CP, Radial series, Radial, pin pitch=3.50mm, , diameter=8mm, Electrolytic Capacitor
@@ -83125,12 +83195,12 @@ Through hole pin header THT 1x04 2.54mm single row
 4
 4
 minisynth32
-TL3301AF160QG-nopaste
+TL59N
 
 
 0
-4
-4
+2
+2
 minisynth32
 mouse-bite-2.54mm-slot
 
@@ -83138,3 +83208,17 @@ mouse-bite-2.54mm-slot
 0
 0
 0
+pb400
+PB400EEQR1BLK
+
+
+0
+4
+4
+pj-002a
+CUI_PJ-002A
+
+
+0
+3
+3
