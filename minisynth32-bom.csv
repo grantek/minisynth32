@@ -14,8 +14,8 @@ PCB Ref,Qnty,Value,Cmp name,Footprint,Description,Vendor
 "J7, ",1,SSD1306 OLED,,1x04_P2.54mm (to attach),0.91” OLED display with SSD1306 I2C board,Generic
 "R1, ",1,1k,R,Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal,Resistor,
 "R2, ",1,220R,R,Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal,Resistor,
-"SW1, SW3",1,TL3301AF160QG,TL3301AF160QG,Custom THT,6mm square * 5mm tall SMD SPST momentary tactile switch,
-"SW2, ",1,PB400EEQR1BLK,PB400EEQR1BLK or PB400EEQX,,"DPST off-on pushbutton switch. PB400EEQR1BLK comes with a round black cap,  PB400EEQX is the same thing without the cap (the round cap can be discarded)",E-Switch
+"SW1, SW2, optional SW3-10",1,TL59NF160Q,TL59NF160Q,Custom THT,6mm square * 4.3mm tall THT SPST momentary tactile switch,E-Switch
+SW11,1,PB400EEQR1BLK,PB400EEQR1BLK or PB400EEQX,,"DPST off-on pushbutton switch. PB400EEQR1BLK comes with a round black cap,  PB400EEQX is the same thing without the cap (the round cap can be discarded)",E-Switch
 ,1,,TACBLK ,,Rectangular pushbutton cap – black,E-Switch
 "U1, ",1,H11L1,H11L1,Package_DIP:DIP-6_W7.62mm,"Schmitt Trigger Output Optocoupler, High Speed, DIP-6, 1.6mA turn on threshold",
 ,,,,,,
@@ -32,8 +32,8 @@ Other:,,,,,,
 ,4,M3 nut,Faceplate and DIN connector,,,
 ,4,M2.5*8mm bolt,Raspberry Pi,8-12mm length should work,,
 ,4,M2.5 nut,Raspberry Pi,,,
-,4,M3*4mm screw,Faceplate and top shell,,,
-,4,M3x3mm brass knurled threaded insert,Faceplate and top shell,Usually sold by 3D printing suppliers,,
+,2,M3*4mm screw,Faceplate and top shell,,,
+,2,M3x3mm brass knurled threaded insert,Faceplate and top shell,Usually sold by 3D printing suppliers,,
 ,1,12mm rotary encoder with pushbutton,,"NOT pre-mounted onto a PCB. 12mm shaft height, 6mm shaft diameter",,
 ,4,Adhesive rubber feet,,"eg. 3M Bumpon SJ-5508, but anything will work",,
 ,1,Raspberry Pi 3,,Raspberry Pi 3A or 3B works with rev 1.1+ rear PCB,,
@@ -44,8 +44,8 @@ Other:,,,,,,
 3D printed parts,,,,,,
 ,Qnty,Filename,Description,Notes,,
 ,1,face.stl,Face plate,See README for printing notes,,
-,2,button.stl,Square button,,,
+,2,rectbutton.stl,Square button,,,
 ,1,knob-3.1mm.stl,Volume dial knob,See README for fitting notes,,
-,1,rebackplate.stl,Mounting plate for rotary encoder,,,
 ,1,base.stl,Bottom shell,,,
 ,1,top.stl,Top shell,,,
+,1,shim.stl,OLED shim,"Helps align the OLED on the front PCB, see README for customisation",,

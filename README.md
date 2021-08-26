@@ -10,11 +10,13 @@ A 3D-printable MIDI synthesiser inspired by the Roland MT-32 and
 
 * 3D printable shell, 50% scale of the original MT-32
 * GY-PCM5102 HiFi DAC board
-* Front panel PCB with 2x tactile buttons and 0.91" OLED Display
+* Front panel PCB with 2 functional tactile buttons and 0.91" OLED Display
+* Optional 10-button fully clickable front panel (extra buttons are currently
+  non-functional)
 * Rear I/O breakout PCB with 5.5mm power jack and pushbutton power switch
 * Rotary encoder volume dial (generic 12mm shaft with no carrier board)
 * MIDI Input only (due to space limitations)
-* Mostly through-hole soldering, except for the two tactile buttons
+* Completly through-hole soldering, no surface mount components
 * Works with the Raspberry Pi "A" or "B" variants
 
 ## Warnings
@@ -27,8 +29,8 @@ GitHub, and the worst you'll get is sympathy.
 
 ## Assembly Notes
 
-Check the [project wiki](https://github.com/grantek/minisynth32/wiki) for the build guide with pictures, a text-only copy is
-included below:
+Check the [project wiki](https://github.com/grantek/minisynth32/wiki) for the
+build guide with pictures, a text-only copy is included below:
 
 ### MT32-pi configuration
 
@@ -84,55 +86,43 @@ board).
 
 PCB notes for manufacturers:
 
-* Rear PCB only: 31.7mm * 96mm
-* Front PCB only: 15.2mm * 89.9mm
-* Panelised front+rear PCB: 49.5mm * 96mm
+* Rear PCB only (v1.1): 31.7mm * 96mm
+* Front PCB only (v2.0): 17mm * 96.2mm
+* Panelised front+rear PCB: 51.3mm * 96.2mm
 * Minimum hole size: 0.5mm (the standard "0.3mm" is fine to select)
 * Minimum track spacing: 0.2mm (the standard "6 mils" is fine to select)
 * Layers: 2
 * Thickness: must be 1.6mm
 
-Don't be scared of the SMD switches, they're huge compared to most surface
-mount devices. If you're coming from clumsyMIDI and have never hand-soldered
-these, the trick is to solder one leg and position the switch while the solder
-is molten. Ideally use flux paste/gel, position the switch, and hold it while
-adding a blob of solder.
-
-Apart from that, the main soldering advice is to solder the DAC and OLED boards
-first (see below), then the generic "lowest-height components first". Make sure
-to trim all legs on the underside of the rear breakout PCB, as this faces
+The main soldering advice is to solder the DAC and OLED boards first if
+possible (see below), then the generic "lowest-height components first". Make
+sure to trim all legs on the underside of the rear breakout PCB, as this faces
 upwards and there isn't much room to the printed case.
 
-### Soldering the OLED and GY-PCM5102 board
+### Soldering the OLED board with 3D-printed shim
+
+The OLED boards have the glass screen bonded to the PCB, sometimes with no
+visible clearance and sometimes with a padded adhesive tape that makes the
+module a little thicker. The front PCB sits at a fixed distance from the front
+face, so the OLED board needs to be soldered with some clearance from the front
+PCB. To help with this, there is a 3D-printed shim that clips on the front PCB
+and helps align the OLED board.
+
+There are 2 STL files for the shim, a thicker one for low-clearance boards and a
+thinner one for boards with some padding underneath the glass screen. Ideally,
+do a test fit with the OLED board by sticking it to the shim with double-sided
+tape, clipping the shim onto the front PCB, and fitting the front PCB to the
+3D-printed faceplate. If you need to adjust the thickness, open shim.FCStd in
+FreeCAD, open the spreadsheet named "Spreadsheet", and edit the value of "shim
+thickness", then export the shim model as an STL.
+
+Once you have everything aligned, you can solder the pins into the front panel
+PCB.
+
+### Soldering the DAC module
 
 **IMPORTANT:** As per the clumsyMIDI documentation, make sure that all 4 solder
 pad "jumpers" on the GY-PCM5102 board are set BEFORE soldering it to the board.
-
-**IMPORTANT:** The OLED board MUST be soldered _flat_ against the front panel
-PCB. There is no clearance for the plastic collar of a pin header.
-
-To solder the OLED board to the front panel:
-
-- Take a 4-pin header, and solder it "normally" on the rear side of the board
-(ie. plastic collar on the rear of the board, short ends of the pins in the
-OLED board's holes.
-- Trim the soldered ends of the pins off with sidecutters if they stick up far
-enough to do so. Alternatively, don't insert the pins that far in before
-soldering.
-- Slide the black plastic collar off the pin header, using pliers or by
-levering something underneath it. If necessary, you can crush the collar with
-pliers and remove the pieces.
-- Insert the long ends of the pins without the collar through the Minisynth 32
-front panel PCB, so that the OLED board is sitting on its silk-screened
-footprint. The OLED board sits partially on the front panel PCB, but is both
-longer and wider at one edge that the front panel PCB.
-- The OLED board will rock on the largest of its SMD components pressing
-against the front panel board. Take a piece of printer paper, fold it in half
-twice (so you have 4 layers), and use that as a shim between the two boards to
-stabilise the OLED board horizontal to the front panel PCB.
-- Once stabilised, solder the pins in place on the front panel PCB, and trim
-the ends.
-
 To solder the GY-PCM5102 DAC board:
 
 - Check the soldered pad headers on the rear of the GY-PCM5102 a final time.
@@ -214,13 +204,10 @@ different shaft widths, but the FreeCAD model is also easy to modify.
 Make sure you have a good fit for the knob before assembling the face plate,
 but leave it off when inserting the rotary encoder.
 
-Insert the rotary encoder into the printed backplate (direction doesn't
-matter), and fasten the nut that comes with the encoder onto the front of the
-backplate. This is optional if the rotary encoder screws tightly into the
-backplate. 
-
-Align the encoder in the backplate so that one of the tucked tabs is on the
-bottom (horizontal) edge, and the pins are on the side (vertical) edges.
+Put the hexagonal nut from the rotary encoder into the hexagonal relief in the
+front of the faceplate, then screw the encoder shaft in throught the nut.
+There's a cutout in the faceplate to allow the encoder to spin, but pliers are
+helpful to rotate it carefully.
 
 ### Assembling the MIDI port
 
@@ -245,34 +232,28 @@ The front PCB, rotary encoder, and top shell are attached using M3\*4mm screws.
 M3 PC Case Screws may work here, but if they're any longer than 4mm, it's
 possible to push into the plastic resulting in a bulge on the front.
 
-The mounting holes for the rotary encoder, the front panel PCB, and the top
-shell use 3mm M3 knurled threaded inserts. These are pushed into the (slightly
-narrower) mounting holes of the plastic case with a hot soldering iron to melt
-them into the hole (use a similar temperature as your 3D printer extruder, eg.
-220-250 Celsius for PLA).
+The mounting holes for the front panel PCB, and the top shell use 3mm M3
+knurled threaded inserts. These are pushed into the (slightly narrower)
+mounting holes of the plastic case with a hot soldering iron to melt them into
+the hole (use a similar temperature as your 3D printer extruder, eg. 220-250
+Celsius for PLA).
 
   *  Be careful you don't let the soldering iron touch the other 3D-printed
      parts!
   *  It's easy with a wide conical soldering tip to push the tip of the iron
      into the insert, and hold the insert down with tweezers while you remove
-     the iron tip. There is one mounting hole at the edge of the faceplate
-     where that's impossible, so you need to press the edge of the iron tip
-     onto the top of the insert.
+     the iron tip.
 
 ### Assembling the face
 
-* Melt the 3 threaded inserts into the faceplate as described above.
-* Melt the last threaded insert into the mounting hole on the top shell.
+* Melt the first threaded insert into the faceplate as described above.
+* Melt the other threaded insert into the mounting hole on the top shell while
+  you're at it.
 * The printed face plate is assembled with the assembled front panel PCB, two
-  printed buttons, the assembled rotary encoder (with printed backplate), and
-  a printed knob.
+  printed buttons, and the printed knob on the rotary encoder.
 * Drop the printed buttons into the button holes, then fit the front panel PCB
   so that the tactile switches fit against the buttons, and the OLED display
   is aligned with the window. Attach the PCB with an M3 screw.
-* Insert the rotary encoder assembly with the longer side of the backplate to
-  the right (covering the front panel PCB). You may need to bend the pins on the
-  left side upwards to clear the face's mounting tab. Attach the backplate with
-  M3 screws, and fit the knob.
 
 ### Assembling the base and top
 
