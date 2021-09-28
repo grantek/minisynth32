@@ -25,10 +25,25 @@ fit together. 3D printing is time-consuming and an art at the best of times.**
 However, if you're stuck or have a question, feel free to open an issue on
 GitHub, and the worst you'll get is sympathy.
 
+## News
+
+The model pictured has 2 large, easy to print buttons. Current work in the
+"10but" branch is a front face and new PCB that has 10 smaller clickable
+buttons in the same physical layout as the MT-32, for a more authentic look.
+
+Only two of the buttons are functional with mt32-pi (a new PCB will be
+required if a 10-button interface for mt32-pi is developed), the remaining
+buttons have tactile switches behind them that aren't wired to anything.
+
+I haven't completely assembled one of these due to shipping delays getting a
+batch of prototype PCBs, and the 3D models are still undergoing development -
+the 10but branch should be considered experimental and the pieces may not
+all fit together at any one commit.
+
 ## Assembly Notes
 
-Check the [project wiki](https://github.com/grantek/minisynth32/wiki) for the build guide with pictures, a text-only copy is
-included below:
+Check the [project wiki](https://github.com/grantek/minisynth32/wiki) for the
+build guide with pictures, a text-only copy is included below:
 
 ### MT32-pi configuration
 
