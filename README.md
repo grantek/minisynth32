@@ -10,12 +10,11 @@ A 3D-printable MIDI synthesiser inspired by the Roland MT-32 and
 
 * 3D printable shell, 50% scale of the original MT-32
 * GY-PCM5102 HiFi DAC board
-* Front panel PCB with 2 functional tactile buttons and 0.91" OLED Display
-* Optional 10-button fully clickable front panel (extra buttons are currently
-  non-functional)
+* Front panel PCB with 2-10 tactile switches and 0.91" OLED Display
+* Optional 2- or 10-button clickable front panel (only 2 buttons are functional)
 * Rear I/O breakout PCB with 5.5mm power jack and pushbutton power switch
 * Rotary encoder volume dial (generic 12mm shaft with no carrier board)
-* MIDI Input only (due to space limitations)
+* MIDI Input via DIN5 MIDI cable or USB (using additional Arduino board)
 * Completly through-hole soldering, no surface mount components
 * Works with the Raspberry Pi "A" or "B" variants
 
@@ -59,6 +58,7 @@ type = ssd1306_i2c
 
 # invert the display since it's mounted upside-down in the Minisynth 32
 rotation = inverted
+
 ```
 
 * The generic 0.91" SSD1306 OLED also works with `height = 64`, and gives
@@ -68,6 +68,73 @@ rotation = inverted
   setting.
 * Be sure to check the mt32-pi documentation for setting up the required MT-32
   ROMs and/or GM soundfonts, and other options you may be interested in.
+
+### Choose your variant
+
+#### DIN or USB MIDI input
+
+The rear I/O panel is designed to accept a
+[standard MIDI signal](https://www.midi.org/specifications-old/item/midi-din-electrical-specification)
+for MIDI input, and the traditional connector for this (as on the Roland MT-32)
+is a 180 degree DIN5 socket.
+
+The "base-din.stl" base uses a panel-mount DIN5 socket (mounted on the inside)
+connected directly to the input pins on the rear I/O board.
+
+This is the most flexible setup, allowing you to plug in a MIDI cable from a
+retro computer or keyboard, or any modern computer with a USB to MIDI cable.
+
+The "base-mcu.stl" base allows you to mount a small Arduino-based
+microcontroller board in place of the DIN socket. Using the MIDIUARTUSB sketch
+(a cut-down version is included in this repo), the microcontroller acts as a
+USB to MIDI cable, with the TX and 5v lines connected to the rear I/O board.
+
+This allows you to connect the Minisynth 32 to a modern computer (or eg. to
+a MiSTer) with nothing more than a USB cable
+
+If you can't decide which version to make and don't have a USB to MIDI cable,
+consider the DIN version, and make your own external USB to MIDI cable with
+an Arduino, some resistors, and a DIN plug. Commercial cables can be found
+cheaply, but the cheapest use chips that don't fully implement the MIDI
+standard, and won't transmit the SYSEX messages required for MT-32
+compatibility reliably.
+
+#### 10-button or 2-button face
+
+The hardware interface to mt32-pi currently only uses 2 buttons for interacting
+with the software. The Minisynth 32 has a slightly more authentic 10-button
+faceplate, with only 2 of the buttons functional and wired to the Raspberry Pi
+(these are the rectangular buttons in the "Sound" and "Sound Group" positions
+on the MT-32).
+
+The 10-button version of the faceplate ("face.stl" and "buttonsheet.stl") uses
+10 tactile switches to make each button "clickable", even though only 2 are
+functional.
+
+The 2-button version of the faceplate ("face-2but.stl" and
+"buttonsheet-2button.stl") has clickable buttons in the "Sound" and "Sound
+Group" positions, and 8 hard-printed buttons on the face model.
+
+The 10-button version is recommended because it's easier to print (and tiny
+clickable buttons are awesome), but the 2-button version is an option if for
+some reason you prefer it.
+
+#### Note about OLED board thickness
+
+The 0.91" SSD1306 OLED boards aren't a branded standard, and depending on their
+construction they may have different thicknesses. This is due to how the glass
+screen is bonded to the PCB. Some use glue or thin tape to stick the glass to
+the board, and some use a foam adhesive tape which is a bit thicker.
+
+There is clearance between the Minisynth 32 front panel PCB and the inside of
+the face plate to use a slightly thicker OLED board (you don't have to
+disassemble and re-glue it), but to allow for different thicknesses (and to
+keep the front PCB shorter than 100mm), there is a customiseable 3D-printed
+shim that attaches to the front PCB and helps with soldering the OLED board.
+
+The "shim-1.6mm.stl" is used for an OLED board with the glass directly bonded
+to the PCB, and thinner shims can be used if you have an OLED board with some
+space between the glass and the PCB.
 
 ### The PCBs
 
@@ -94,45 +161,68 @@ PCB notes for manufacturers:
 * Layers: 2
 * Thickness: must be 1.6mm
 
-The main soldering advice is to solder the DAC and OLED boards first if
-possible (see below), then the generic "lowest-height components first". Make
-sure to trim all legs on the underside of the rear breakout PCB, as this faces
-upwards and there isn't much room to the printed case.
+### Assembling the front panel PCB
 
-### Soldering the OLED board with 3D-printed shim
+See the [Choose your variant] section for options here, you should have 10 or 2
+tactile switches, and a 3D-printed shim to suit your OLED board.
 
-The OLED boards have the glass screen bonded to the PCB, sometimes with no
-visible clearance and sometimes with a padded adhesive tape that makes the
-module a little thicker. The front PCB sits at a fixed distance from the front
-face, so the OLED board needs to be soldered with some clearance from the front
-PCB. To help with this, there is a 3D-printed shim that clips on the front PCB
-and helps align the OLED board.
+If you're installing 10 tactile switches, solder these first, as it's easy to
+fit them all and then flip the board over with the PCB laying flat on them
+before soldering. It doesn't matter if the switches aren't perfectly aligned
+in rotation, as long as they're all flat against the PCB.
 
-There are 2 STL files for the shim, a thicker one for low-clearance boards and a
-thinner one for boards with some padding underneath the glass screen. Ideally,
-do a test fit with the OLED board by sticking it to the shim with double-sided
-tape, clipping the shim onto the front PCB, and fitting the front PCB to the
-3D-printed faceplate. If you need to adjust the thickness, open shim.FCStd in
-FreeCAD, open the spreadsheet named "Spreadsheet", and edit the value of "shim
-thickness", then export the shim model as an STL.
+Take a 4-pin vertical header and solder it to the back of the OLED board, so
+that the plastic collar and long ends of the pins face backwards. Solder the
+short ends of the pins to the solder points on the front of the board, using
+the plastic collar on the back to keeo them perpendicular.
 
-Once you have everything aligned, you can solder the pins into the front panel
-PCB.
+If you're using a shim thinner than 1.6mm, you'll need to slide the plastic
+collar off the pins so that the OLED board can sit close to the front panel
+board (use a blade to start levering the collar backwards).
 
-### Soldering the DAC module
+Clip the shim to the front panel board so that the flat section is on the front
+and the tab inside the shim's clip fits into the notch on the front panel
+board.
+
+Ideally, do a test fit with the OLED board and shim by installing the board
+on top of the shim without soldering the pins onto the front panel PCB, and
+try fitting it into the front faceplate. If the PCB doesn't sit flush against
+the mounting hole on the faceplate without bending it, the shim is too thick.
+
+If you need to adjust the thickness, open shim.FCStd in FreeCAD, open the
+spreadsheet named "Spreadsheet", and edit the value of "shim thickness",
+then export the shim model as an STL.
+
+Once you have a good fit, solder the pins in the front panel board and trim
+them.
+
+Solder a 6-pin vertical header to the back of the front panel PCB in the
+R\_BREAKOUT position. The UNUSED headers are connected to the non-functional
+buttons and don't need pins unless you're experimenting.
+
+### Assembling the rear I/O PCB
+
+The main soldering advice is to solder the DAC and board first (see below),
+then the generic "lowest-height components first". Make sure to trim all legs
+on the underside of the rear breakout PCB, as this faces upwards and there
+isn't much room to the printed case.
+
+####  Soldering the DAC module
 
 **IMPORTANT:** As per the clumsyMIDI documentation, make sure that all 4 solder
 pad "jumpers" on the GY-PCM5102 board are set BEFORE soldering it to the board.
 To solder the GY-PCM5102 DAC board:
 
 - Check the soldered pad headers on the rear of the GY-PCM5102 a final time.
-- Solder the board flat to the rear breakout board in the same way as the OLED
-board. Alignment is less critical here, I used a 2-layer paper shim to help.
-- Solder the 6 pins on the short edge of the board. You don't need to solder
-anything to the row of 9 pins on the long edge, there is no connection to
-anything on the rear breakout board.
+- Solder a 6-pin header to the back of the board (on the short edge), and slide
+  the plastic collar off, like the OLED board when using a thin shim.
+- Solder the pins through the rear PCB. Alignment of the DAC board is less
+  critical here, I used a 2-layer paper shim to help position it while
+  soldering it.
+- You don't need to solder anything to the row of 9 pins on the long edge,
+  there is no connection to anything on the rear breakout board.
 
-### Soldering the rear panel pin headers
+####  Soldering the rear panel pin headers
 
 There are 3 pin headers on the rear breakout board that require a 90-degree
 angled pin header:
@@ -153,12 +243,15 @@ different angles involved, but I was successful in printing it upright at a
 0.2mm layer height, with the visible layer lines horizontal in the finished
 part.
 
-Specifically, use "tree" support for the face, which builds a tower of support
-starting on the build plate and reaching across to the overhanging parts. I also
-prefer to increase the vertical distance between the support and the printed
-part to make it easier to remove (0.4mm gap for a 0.2mm layer height). The
-supported parts of the model may end up messy on their bottom layer, but this
-is okay for the inside of the faceplate.
+Specifically, use "tree" support for the face if your slicer has the option,
+which builds a tower of support starting on the build plate where possible and
+reaching across to the overhanging parts.
+
+Regardless of the type of support, there will still be some on the inside of
+the faceplate, You need to be thorough in removing it from the inside floor of
+the faceplate because the front panel needs to fit in there, but there is some
+clearance so one or two layers of support stuck to the floor is okay. Careful
+use of a scalpel can help reach behind the PCB support behind the buttons.
 
 The shell was modeled in FreeCAD using the Part workbench, which uses simple
 geometric shapes added and subtracted from each other. If you want to modify
@@ -166,8 +259,12 @@ the "MS-32" text on the face plate to something more authentic, select the
 Model window, press Ctrl-F to search the tree of objects, and search for
 ShapeString (the default name for a text object). In the Data window for the
 selected object you should be able to change the "MS-32" to something else, and
-press Enter. The object remains greyed-out and hidden, but the change should
-propagate through to the final part.
+press Enter. You may also need to supply the font file, I used the "TR-909"
+font freely available online.
+
+If the faceplate doesn't update immediately, you should see a check mark on
+one or more objects in the tree. Right click on the top-level "face" object
+and select "Recompute object".
 
 ### Assembling the rotary encoder
 
