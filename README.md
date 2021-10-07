@@ -15,7 +15,7 @@ A 3D-printable MIDI synthesiser inspired by the Roland MT-32 and
 * Rear I/O breakout PCB with 5.5mm power jack and pushbutton power switch
 * Rotary encoder volume dial (generic 12mm shaft with no carrier board)
 * MIDI Input via DIN5 MIDI cable or USB (using additional Arduino board)
-* Completly through-hole soldering, no surface mount components
+* Completely through-hole soldering, no surface mount components
 * Works with the Raspberry Pi "A" or "B" variants
 
 ## Warnings
@@ -28,7 +28,8 @@ GitHub, and the worst you'll get is sympathy.
 
 ## Assembly Notes
 
-Check the [project wiki](https://github.com/grantek/minisynth32/wiki) for the
+Check the [Bill of Materials](minisynth32-bom.csv) for all of the parts needed,
+and the [project wiki](https://github.com/grantek/minisynth32/wiki) for the
 build guide with pictures, a text-only copy is included below:
 
 ### MT32-pi configuration
@@ -58,7 +59,6 @@ type = ssd1306_i2c
 
 # invert the display since it's mounted upside-down in the Minisynth 32
 rotation = inverted
-
 ```
 
 * The generic 0.91" SSD1306 OLED also works with `height = 64`, and gives
@@ -99,6 +99,17 @@ cheaply, but the cheapest use chips that don't fully implement the MIDI
 standard, and won't transmit the SYSEX messages required for MT-32
 compatibility reliably.
 
+#### Microcontroller board clamp
+
+If using the USB base, the microcontroller board is clamped down against the
+base with a plastic clip. The clip is intended to be used with foam mounting
+tape to add some soft pressure to keep the board in place. If you're not using
+tape or need to adjust the height of the clamp otherwise, open the
+"mcuclamp.FCStd" model in FreeCAD, and adjust the "hieght of board + padding"
+field.
+
+The length of the clamp can also be adjusted to suit different boards.
+
 #### 10-button or 2-button face
 
 The hardware interface to mt32-pi currently only uses 2 buttons for interacting
@@ -132,9 +143,13 @@ disassemble and re-glue it), but to allow for different thicknesses (and to
 keep the front PCB shorter than 100mm), there is a customiseable 3D-printed
 shim that attaches to the front PCB and helps with soldering the OLED board.
 
-The "shim-1.6mm.stl" is used for an OLED board with the glass directly bonded
+The "shim-2mm.stl" is used for an OLED board with the glass directly bonded
 to the PCB, and thinner shims can be used if you have an OLED board with some
 space between the glass and the PCB.
+
+See the front panel PCB section below for fitting notes. If you need to adjust
+the thickness, open shim.FCStd in FreeCAD, open the spreadsheet named "vars",
+and edit the value of "shim thickness", then export the shim model as an STL.
 
 ### The PCBs
 
@@ -160,80 +175,6 @@ PCB notes for manufacturers:
 * Minimum track spacing: 0.2mm (the standard "6 mils" is fine to select)
 * Layers: 2
 * Thickness: must be 1.6mm
-
-### Assembling the front panel PCB
-
-See the [Choose your variant] section for options here, you should have 10 or 2
-tactile switches, and a 3D-printed shim to suit your OLED board.
-
-If you're installing 10 tactile switches, solder these first, as it's easy to
-fit them all and then flip the board over with the PCB laying flat on them
-before soldering. It doesn't matter if the switches aren't perfectly aligned
-in rotation, as long as they're all flat against the PCB.
-
-Take a 4-pin vertical header and solder it to the back of the OLED board, so
-that the plastic collar and long ends of the pins face backwards. Solder the
-short ends of the pins to the solder points on the front of the board, using
-the plastic collar on the back to keeo them perpendicular.
-
-If you're using a shim thinner than 1.6mm, you'll need to slide the plastic
-collar off the pins so that the OLED board can sit close to the front panel
-board (use a blade to start levering the collar backwards).
-
-Clip the shim to the front panel board so that the flat section is on the front
-and the tab inside the shim's clip fits into the notch on the front panel
-board.
-
-Ideally, do a test fit with the OLED board and shim by installing the board
-on top of the shim without soldering the pins onto the front panel PCB, and
-try fitting it into the front faceplate. If the PCB doesn't sit flush against
-the mounting hole on the faceplate without bending it, the shim is too thick.
-
-If you need to adjust the thickness, open shim.FCStd in FreeCAD, open the
-spreadsheet named "Spreadsheet", and edit the value of "shim thickness",
-then export the shim model as an STL.
-
-Once you have a good fit, solder the pins in the front panel board and trim
-them.
-
-Solder a 6-pin vertical header to the back of the front panel PCB in the
-R\_BREAKOUT position. The UNUSED headers are connected to the non-functional
-buttons and don't need pins unless you're experimenting.
-
-### Assembling the rear I/O PCB
-
-The main soldering advice is to solder the DAC and board first (see below),
-then the generic "lowest-height components first". Make sure to trim all legs
-on the underside of the rear breakout PCB, as this faces upwards and there
-isn't much room to the printed case.
-
-####  Soldering the DAC module
-
-**IMPORTANT:** As per the clumsyMIDI documentation, make sure that all 4 solder
-pad "jumpers" on the GY-PCM5102 board are set BEFORE soldering it to the board.
-To solder the GY-PCM5102 DAC board:
-
-- Check the soldered pad headers on the rear of the GY-PCM5102 a final time.
-- Solder a 6-pin header to the back of the board (on the short edge), and slide
-  the plastic collar off, like the OLED board when using a thin shim.
-- Solder the pins through the rear PCB. Alignment of the DAC board is less
-  critical here, I used a 2-layer paper shim to help position it while
-  soldering it.
-- You don't need to solder anything to the row of 9 pins on the long edge,
-  there is no connection to anything on the rear breakout board.
-
-####  Soldering the rear panel pin headers
-
-There are 3 pin headers on the rear breakout board that require a 90-degree
-angled pin header:
-
-- `F_PANEL`: connects to the front panel PCB, 6 pins.
-- `ROT_HDR`: connects to the rotary encoder, 4 pins.
-- `MIDI_IN:`: connects to the panel-mount DIN5 jack for MIDI input.
-
-Check the clearance of your pin headers against the Raspberry Pi - if you have
-tall pin headers, push them down through the plastic collar so that they just
-have room for the jumper wires to connect.
 
 ### 3D Printing the shell
 
@@ -266,6 +207,76 @@ If the faceplate doesn't update immediately, you should see a check mark on
 one or more objects in the tree. Right click on the top-level "face" object
 and select "Recompute object".
 
+### Assembling the front panel PCB
+
+See the [Choose your variant] section for options here, you should have 10 or 2
+tactile switches, and a 3D-printed shim to suit your OLED board.
+
+If you're installing 10 tactile switches, solder these first, as it's easy to
+fit them all and then flip the board over with the PCB laying flat on them
+before soldering. It doesn't matter if the switches aren't perfectly aligned
+in rotation, as long as they're all flat against the PCB.
+
+Take a 4-pin vertical header and solder it to the back of the OLED board, so
+that the plastic collar and long ends of the pins face backwards. Solder the
+short ends of the pins to the solder points on the front of the board, using
+the plastic collar on the back to keep them perpendicular.
+
+If you're using a shim thinner than 1.6mm, you'll need to slide the plastic
+collar off the pins so that the OLED board can sit close to the front panel
+board (use a blade to start levering the collar backwards).
+
+Clip the shim to the front panel board so that the flat section is on the front
+and the tab inside the shim's clip fits into the notch on the front panel
+board.
+
+Ideally, do a test fit with the OLED board and shim by installing the board
+on top of the shim without soldering the pins onto the front panel PCB, and
+try fitting it into the front faceplate. If the PCB doesn't sit flush against
+the mounting hole on the faceplate without bending, the shim is too thick.
+
+Once you have a good fit, solder the pins in the front panel board and trim
+them.
+
+Solder a 6-pin vertical header to the back of the front panel PCB in the
+R\_BREAKOUT position. The UNUSED headers are connected to the non-functional
+buttons and don't need pins unless you're experimenting.
+
+### Assembling the rear I/O PCB
+
+The main soldering advice is to solder the DAC board first (see below), then
+the generic "lowest-height components first". Make sure to trim all legs on the
+underside of the rear breakout PCB, as this faces upwards and there isn't
+much room to the printed case.
+
+####  Soldering the DAC module
+
+**IMPORTANT:** As per the clumsyMIDI documentation, make sure that all 4 solder
+pad "jumpers" on the GY-PCM5102 board are set BEFORE soldering it to the board.
+To solder the GY-PCM5102 DAC board:
+
+- Check the soldered pad headers on the rear of the GY-PCM5102 a final time.
+- Solder a 6-pin header to the back of the board (on the short edge), and slide
+  the plastic collar off, like the OLED board when using a thin shim.
+- Solder the pins through the rear PCB. Alignment of the DAC board is less
+  critical here, I used a 2-layer paper shim to help position it while
+  soldering it.
+- You don't need to solder anything to the row of 9 pins on the long edge,
+  there is no connection to anything on the rear breakout board.
+
+####  Soldering the rear panel pin headers
+
+There are 3 pin headers on the rear breakout board that require a 90-degree
+angled pin header:
+
+- `F_PANEL`: connects to the front panel PCB, 6 pins.
+- `ROT_HDR`: connects to the rotary encoder, 4 pins.
+- `MIDI_IN:`: connects to the panel-mount DIN5 jack for MIDI input.
+
+Check the clearance of your pin headers against the Raspberry Pi - if you have
+tall pin headers, push them down through the plastic collar so that they just
+have room for the jumper wires to connect.
+
 ### Assembling the rotary encoder
 
 The rotary encoder used is a "12mm" generic device available online.
@@ -290,7 +301,7 @@ The pinout from the rear I/O board is labelled `GND` `SW` `B` `A`
 * If you get the `B` and `A` pins wrong, you can swap the jumper wires on the
   pin header of the rear breakout board.
 
-The 3D-printed knob for the rotary encoder can be hard to to attach firmly. I
+The 3D-printed knob for the rotary encoder can be hard to attach firmly. I
 found printing the knob in PET-G was best to get a firm fit, but PLA was
 less flexible, If the knob won't attach, you can carefully use a clean hot
 soldering iron pressed against the rotary encoder's shaft to soften the plastic
@@ -301,12 +312,15 @@ different shaft widths, but the FreeCAD model is also easy to modify.
 Make sure you have a good fit for the knob before assembling the face plate,
 but leave it off when inserting the rotary encoder.
 
-Put the hexagonal nut from the rotary encoder into the hexagonal relief in the
-front of the faceplate, then screw the encoder shaft in throught the nut.
-There's a cutout in the faceplate to allow the encoder to spin, but pliers are
-helpful to rotate it carefully.
+Remove the hexagonal nut and washer from the encoder, and simply screw the
+encoder shaft into the faceplate. There's a cutout in the faceplate to allow
+the encoder to spin, but pliers are helpful to rotate it carefully.
 
-### Assembling the MIDI port
+If the encoder doesn't screw in tightly to the plastic face, put the hexagonal
+nut from the rotary encoder into the hexagonal relief in the front of the
+faceplate, then screw in the encoder.
+
+### Assembling the MIDI port for the DIN base
 
 This is similar to the rotary encoder, but it just requires 2 jumper wires
 soldered onto the panel-mount DIN5 jack. Looking at the face of the jack with
@@ -314,6 +328,29 @@ the pins facing upwards, pin 4 is immediately to the left of the middle pin and
 pin 5 is on the right. Heatshrink isn't needed for insulation because the pins
 are so far apart, but I used heatshrink to add some mechanical stability to the
 connection.
+
+### Setting up MIDIUARTUSB for the USB base
+
+This repository has 3D models to suit the Sparkfun Pro Micro board (an Arduino-
+compatible board), and the Arduino Micro board. The Sparkfun Pro Micro is
+recommended because it's shorter and doesn't interfere with the SD card port,
+but any of the Arduino boards that use the ATmega32U4 microcontroller will be
+compatible if you can fit it in (as mentioned in the intro, you can also leave
+the Arduino outside the box as a separate USB-MIDI adapter).
+
+Configuring the Arduino IDE to upload the sketch is outside the scope of this
+project, see the links in [MIDIUARTUSB/README.md]. Things to note:
+
+- Install the MIDI and MIDIUSB libraries in the Arduino IDE
+- Install support for the Sparkfun board using the instructions at sparkfun.com
+
+Once you've uploaded the sketch to the board, you need to add resistors and
+wires to the board. Solder a 220 ohm resistor onto each of the TX and VCC
+points (TX and 5v for the Arduino Micro), and solder DuPont wires in the
+way as the DIN port/rotary encoder.
+
+If using a 3.3v microcontroller board, use a 33 ohm resistor on the VCC line and
+a 10 ohm resistor on the TX line.
 
 ### Assembling the shell
 
@@ -362,6 +399,9 @@ Celsius for PLA).
 * Line up the Pi on the base with the rear panel, and insert 4 M2.5 bolts
   through the base and mounting holes on the Pi. Secure with 4 M2.5 nuts, but
   do not over-tighten these as excess pressure can damage the Pi.
+
+#### Install the DIN port in the MIDI DIN base
+
 * Place the wired MIDI DIN jack on the **inside** of the base's rear plate, and
   attach with 2 M3 bolts from the outside (M3 nuts on the inside). The DIN5
   jack is traditionally mounted with the pins facing down, and the alignment
@@ -371,6 +411,20 @@ Celsius for PLA).
   With the half-circle of DIN pins facing downwards, Pin 4 is left of the
   centre solder tab, and when connected to the rear PCB, the jumper wires
   won't cross.
+
+#### Install the MCU board in the USB base
+
+* Use a piece of padded foam adhesive tape to stick the microcontroller board
+  onto the raised section of the base.
+* Put a piece of padded foam adhesive tape on top of the ATMega32U4 chip to
+  press against the clamp.
+* Put the clamp over the MCU board and align the bolt holes.
+* Use 3mm bolts and hex nuts to bolt the clamp down and secure the board.
+* Connect the VCC/5v wire to Pin 4 on the rear I/O board, and TX to Pin 5.
+
+
+#### Finishing up
+
 * Connect the wired rotary encoder to the `ROT_HDR` header.
 * Use a row of 6 female-female jumper wires to connect the front panel's
   `R_BREAKOUT` header to the rear breakout board's `F_PANEL` header.
