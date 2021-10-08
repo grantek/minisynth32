@@ -1,6 +1,6 @@
 # Minisynth 32
 
-A 3D-printable MIDI synthesiser inspired by the Roland MT-32 and
+A 3D-printable MIDI synthesizer inspired by the Roland MT-32 and
 [clumsyMIDI](https://github.com/gmcn42/clumsyMIDI), and powered by the
 [mt32-pi](https://github.com/dwhinham/mt32-pi/wiki) MT-32 emulator.
 
