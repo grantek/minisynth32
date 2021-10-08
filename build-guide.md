@@ -77,7 +77,7 @@ If using the USB base, the microcontroller board is clamped down against the
 base with a plastic clip. The clip is intended to be used with foam mounting
 tape to add some soft pressure to keep the board in place. If you're not using
 tape or need to adjust the height of the clamp otherwise, open the
-"mcuclamp.FCStd" model in FreeCAD, and adjust the "hieght of board + padding"
+"mcuclamp.FCStd" model in FreeCAD, and adjust the "height of board + padding"
 field.
 
 The length of the clamp can also be adjusted to suit different boards.
@@ -166,6 +166,9 @@ the faceplate because the front panel needs to fit in there, but there is some
 clearance so one or two layers of support stuck to the floor is okay. Careful
 use of a scalpel can help reach behind the PCB support behind the buttons.
 
+The other parts are more straightforward to print, but read through the other
+sections for notes on customisation.
+
 The shell was modeled in FreeCAD using the Part workbench, which uses simple
 geometric shapes added and subtracted from each other. If you want to modify
 the "MS-32" text on the face plate to something more authentic, select the
@@ -181,8 +184,9 @@ and select "Recompute object".
 
 ### Assembling the front panel PCB
 
-See the [Choose your variant] section for options here, you should have 10 or 2
-tactile switches, and a 3D-printed shim to suit your OLED board.
+See the [Choose your variant](#choose-your-variant) section for options here,
+you should have 10 or 2 tactile switches, and a 3D-printed shim to suit your
+OLED board.
 
 If you're installing 10 tactile switches, solder these first, as it's easy to
 fit them all and then flip the board over with the PCB laying flat on them
@@ -211,7 +215,7 @@ Once you have a good fit, solder the pins in the front panel board and trim
 them.
 
 Solder a 6-pin vertical header to the back of the front panel PCB in the
-R\_BREAKOUT position. The UNUSED headers are connected to the non-functional
+`R_BREAKOUT` position. The `UNUSED` headers are connected to the non-functional
 buttons and don't need pins unless you're experimenting.
 
 ### Assembling the rear I/O PCB
@@ -303,7 +307,8 @@ compatible if you can fit it in (as mentioned in the intro, you can also leave
 the Arduino outside the box as a separate USB-MIDI adapter).
 
 Configuring the Arduino IDE to upload the sketch is outside the scope of this
-project, see the links in [MIDIUARTUSB/README.md]. Things to note:
+project, see the links in the [MIDIUARTUSB README](MIDIUARTUSB/README.md).
+Things to note:
 
 - Install the MIDI and MIDIUSB libraries in the Arduino IDE
 - Install support for the Sparkfun board using the instructions at sparkfun.com
