@@ -5,9 +5,9 @@
     {
       "Vendor":      "KiCad",
       "Application": "Pcbnew",
-      "Version":     "5.99.0+really5.1.9+dfsg1-1"
+      "Version":     "5.99.0+really5.1.10+dfsg1-1"
     },
-    "CreationDate":  "2021-05-15T22:05:00+10:00"
+    "CreationDate":  "2021-10-07T20:27:13+11:00"
   },
   "GeneralSpecs":
   {
@@ -15,12 +15,12 @@
     {
       "Name": "minisynth32",
       "GUID": "6d696e69-7379-46e7-9468-33322e6b6963",
-      "Revision": "1.1"
+      "Revision": "1.2-2.0"
     },
     "Size":
     {
-      "X": 49.580,
-      "Y": 96.062
+      "X": 51.340,
+      "Y": 96.250
     },
     "LayerNumber": 2,
     "BoardThickness":  1.600
