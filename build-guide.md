@@ -1,4 +1,4 @@
-# Build guide
+# Minisynth 32 Build Guide
 
 Check the [Bill of Materials](minisynth32-bom.csv) for all of the parts needed,
 and the [project wiki](https://github.com/grantek/minisynth32/wiki) for the
@@ -284,14 +284,6 @@ different shaft widths, but the FreeCAD model is also easy to modify.
 Make sure you have a good fit for the knob before assembling the face plate,
 but leave it off when inserting the rotary encoder.
 
-Remove the hexagonal nut and washer from the encoder, and simply screw the
-encoder shaft into the faceplate. There's a cutout in the faceplate to allow
-the encoder to spin, but pliers are helpful to rotate it carefully.
-
-If the encoder doesn't screw in tightly to the plastic face, put the hexagonal
-nut from the rotary encoder into the hexagonal relief in the front of the
-faceplate, then screw in the encoder.
-
 ### Assembling the MIDI port for the DIN base
 
 This is similar to the rotary encoder, but it just requires 2 jumper wires
@@ -301,7 +293,7 @@ pin 5 is on the right. Heatshrink isn't needed for insulation because the pins
 are so far apart, but I used heatshrink to add some mechanical stability to the
 connection.
 
-### Setting up MIDIUARTUSB for the USB base
+### Setting up the MCU board for the USB base
 
 This repository has 3D models to suit the Sparkfun Pro Micro board (an Arduino-
 compatible board), and the Arduino Micro board. The Sparkfun Pro Micro is
@@ -357,9 +349,22 @@ Celsius for PLA).
   you're at it.
 * The printed face plate is assembled with the assembled front panel PCB, two
   printed buttons, and the printed knob on the rotary encoder.
-* Drop the printed buttons into the button holes, then fit the front panel PCB
-  so that the tactile switches fit against the buttons, and the OLED display
+* Drop the printed button sheet into the button holes, then fit the front panel
+  PCB so that the tactile switches fit against the buttons, and the OLED display
   is aligned with the window. Attach the PCB with an M3 screw.
+* Install the rotary encoder:
+
+Remove the hexagonal nut and washer from the encoder, and simply screw the
+encoder shaft into the faceplate. There's a cutout in the faceplate to allow
+the encoder to spin, but pliers are helpful to rotate it carefully. You may
+need to keep screwing it into the plastic once it's in, and slightly strip away
+some plastic to get it to line up straight (you'll notice this when installing
+the knob).
+
+If the encoder doesn't screw in tightly to the plastic face, put the hexagonal
+nut from the rotary encoder into the hexagonal relief in the front of the
+faceplate, then screw in the encoder. Even if you prefer to use the hexagonal
+nut regardless, screw the encoder into the plastic first to get it straight.
 
 ### Assembling the base and top
 
@@ -393,7 +398,6 @@ Celsius for PLA).
 * Put the clamp over the MCU board and align the bolt holes.
 * Use 3mm bolts and hex nuts to bolt the clamp down and secure the board.
 * Connect the VCC/5v wire to Pin 4 on the rear I/O board, and TX to Pin 5.
-
 
 #### Finishing up
 
