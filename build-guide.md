@@ -112,7 +112,7 @@ the board, and some use a foam adhesive tape which is a bit thicker.
 There is clearance between the Minisynth 32 front panel PCB and the inside of
 the face plate to use a slightly thicker OLED board (you don't have to
 disassemble and re-glue it), but to allow for different thicknesses (and to
-keep the front PCB shorter than 100mm), there is a customiseable 3D-printed
+keep the front PCB shorter than 100mm), there is a customizable 3D-printed
 shim that attaches to the front PCB and helps with soldering the OLED board.
 
 The "shim-2mm.stl" is used for an OLED board with the glass directly bonded
